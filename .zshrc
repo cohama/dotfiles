@@ -14,7 +14,7 @@ alias chrome='/opt/google/chrome/chrome'
 alias gvim='gvim -f'
 
 # enable git completion
-source ~/lib/git-completion.bash
+source ~/dotfiles/git-completion.bash
 
 # environment variables
 export LANG=ja_JP.UTF-8
