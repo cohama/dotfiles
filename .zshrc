@@ -47,3 +47,7 @@ unsetopt extended_glob
 
 export EDITOR='vim'
 
+# scala home
+export SCALA_HOME=~/app/scala-2.9.2
+export PATH=$PATH:$SCALA_HOME/bin
+
