@@ -30,3 +30,5 @@
 	rh = reset --hard
 	s = status -s
 
+[merge]
+	tool = vimdiff
