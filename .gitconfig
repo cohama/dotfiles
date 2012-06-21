@@ -5,7 +5,7 @@
 	ui = auto
 [core]
 	excludesfile = /home/cohama/.gitignore
-	editor = vim
+	editor = /usr/bin/gvim
 [alias]
 	a = add
 	aa = add -A
@@ -31,4 +31,4 @@
 	s = status -s
 
 [merge]
-	tool = vimdiff
+	tool = /usr/bin/gvimdiff
