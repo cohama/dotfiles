@@ -33,3 +33,5 @@
 
 [merge]
 	tool = /usr/bin/gvimdiff
+
+# vim: ts=4 noexpandtab
