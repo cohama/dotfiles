@@ -1,11 +1,11 @@
 [user]
 	name = cohama
-	email = hirotaka.hamada.1024@gmail.com
+	email = cohama@live.jp
 [color]
 	ui = auto
 [core]
-	excludesfile = /home/cohama/.gitignore
-	editor = /usr/bin/gvim -f
+	excludesfile = ~/.gitignore
+	editor = gvim -f
 [alias]
 	a = add
 	aa = add -A
@@ -15,6 +15,7 @@
 	ca = commit -av
 	cam = commit --amend
 	camc = commit --amend -C HEAD
+	cempty = commit --allow-empty
 	co = checkout
 	cob = checkout -b
 	d = diff
@@ -32,7 +33,7 @@
 	s = status -s
 
 [merge]
-	tool = /usr/bin/gvimdiff
+	tool = gvimdiff
 
 [github]
 	user = cohama
