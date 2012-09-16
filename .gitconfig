@@ -13,7 +13,7 @@
 	bd = branch -D
 	c = commit -v
 	ca = commit -av
-	cam = commit --amend
+	cam = commit --amend -v
 	camc = commit --amend -C HEAD
 	cempty = commit --allow-empty
 	co = checkout
