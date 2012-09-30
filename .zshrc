@@ -12,6 +12,7 @@ alias la='ls -AF'
 alias l='ls -CF'
 alias chrome='/opt/google/chrome/chrome'
 alias gvim='gvim -f'
+alias cdv='cd ~/.vim'
 
 # enable git completion
 source ~/dotfiles/git-completion.bash
