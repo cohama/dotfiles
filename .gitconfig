@@ -34,4 +34,7 @@
 [merge]
 	tool = /usr/bin/gvimdiff
 
+[github]
+	user = cohama
+
 # vim: ts=4 noexpandtab
