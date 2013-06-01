@@ -46,3 +46,5 @@ unsetopt extended_glob
 
 export EDITOR='vim'
 
+export VIM_HOME=~/app/vim
+export PATH=$VIM_HOME/bin:$PATH
