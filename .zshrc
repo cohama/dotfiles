@@ -13,6 +13,8 @@ alias l='ls -CF'
 alias chrome='/opt/google/chrome/chrome'
 alias gvim='gvim -f'
 alias cdv='cd ~/.vim'
+alias cdp='cd ~/proj'
+alias cdt='cd ~/tmp'
 alias :q=exit
 
 # enable git completion
