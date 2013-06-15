@@ -38,4 +38,7 @@
 [github]
 	user = cohama
 
+[push]
+	default = simple
+
 # vim: ts=4 noexpandtab
