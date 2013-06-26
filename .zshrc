@@ -11,6 +11,7 @@ alias cdv='cd ~/.vim'
 alias cdp='cd ~/proj'
 alias cdt='cd ~/tmp'
 alias :q=exit
+alias gitinit='git init && git commit --allow-empty -minit'
 
 # enable git completion
 source ~/dotfiles/git-completion.bash
