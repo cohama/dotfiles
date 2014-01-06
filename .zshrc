@@ -94,3 +94,7 @@ function mkcd() {
 }
 
 export EDITOR='vim'
+
+# cabal
+export CABAL_HOME=~/.cabal
+export PATH=$CABAL_HOME/bin:$PATH
