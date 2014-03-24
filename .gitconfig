@@ -21,6 +21,9 @@
 	d = diff
 	f = fetch
 	l = log --oneline --graph --all --decorate
+	l1 = log --oneline --graph --all --decorate -10
+	l2 = log --oneline --graph --all --decorate -20
+	l3 = log --oneline --graph --all --decorate -30
 	m = merge --no-ff --no-commit
 	r = reset
 	rb = rebase
