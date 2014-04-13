@@ -1,0 +1,17 @@
+Config {
+    font = "xft:Meiryo UI:size=12",
+    bgColor = "black",
+    fgColor = "grey",
+    position = TopW L 90,
+    commands = [
+        Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
+        Run Memory ["-t","Mem: <usedratio>%"] 10,
+        Run Date "%Y/%m/%d %a %k:%M" "date" 10,
+        Run StdinReader
+    ],
+    sepChar = "%",
+    alignSep = "}{",
+    template = "%StdinReader% }{ | %cpu% | %memory% | <fc=#ee9a00>%date%</fc>"
+}
+
+-- vim: ft=haskell

@@ -274,13 +274,19 @@ myStartupHook = return ()
 --
 -- No need to modify this.
 --
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
+main = do
+    x <- statusBar myBar myPP toggleStrutsKey defaults
+    xmonad x
 
 -- Command to launch the bar.
 myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
+myPP = xmobarPP {
+    ppCurrent = xmobarColor "#000000" "#BCBC52" . wrap " " " ",
+    ppHidden = xmobarColor "#808080" "#505050" . wrap " " " ",
+    ppTitle = xmobarColor "#20F0C0" "" . shorten 150
+}
 
 -- Key binding to toggle the gap for the bar.
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
