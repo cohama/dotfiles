@@ -1,11 +1,12 @@
 #!/bin/sh
 for i in .?*; do
-  if [ $i != '..' ] && [ $i != '.git' ] && [ &i != 'xmonad.hs' ]; then
+  echo $i
+  if [ $i != '..' ] && [ $i != '.git' ]; then
     ln -Fsi ~/dotfiles/$i ~
   fi
-  if [ &i != 'xmonad.hs' ]; then
-    mkdir -p ~/.xmonad
-    ln -Fsi ~/dotfiles/$i ~/.xmonad
-  fi
 done
+
+# xmonad
+mkdir -p ~/.xmonad
+ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
