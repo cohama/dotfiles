@@ -1,0 +1,21 @@
+nnoremap j 3j
+nnoremap k 3k
+
+nnoremap d <Nop>
+nnoremap dd d
+nnoremap x :<C-u>q<CR>
+
+nnoremap J gt
+nnoremap K gT
+
+cnoremap <C-p> <Up>
+cnoremap <C-d> <Down>
+
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
+nnoremap t :<C-u>tabopen google<Space>
+nnoremap o :<C-u>open google<Space>
+nnoremap <C-h> :<C-u>history <Space>
+
+" vim: ft=vim
