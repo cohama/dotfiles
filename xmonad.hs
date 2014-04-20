@@ -15,9 +15,13 @@ import Data.Monoid
 import System.Exit
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Actions.WindowGo
+import XMonad.Actions.SpawnOn
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+
+import Control.Monad (liftM2)
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -56,7 +60,7 @@ myBrowser = "firefox"
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces :: [String]
+myWorkspaces :: [WorkspaceId]
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
@@ -79,7 +83,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_v     ), spawn myVimCommand)
 
     -- launch browser
-    , ((modm,               xK_f     ), spawn myBrowser)
+    , ((modm,               xK_f     ), spawnOn "2" "firefox")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -226,11 +230,7 @@ myLayout = avoidStruts $ tiled ||| Mirror tiled ||| Full
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = myDefaultHook <+> manageDocks
-  where
-    myDefaultHook = composeAll [
-            className =? "Firefox"        --> doShift "2"
-        ]
+myManageHook = manageDocks <+> manageSpawn
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -259,7 +259,9 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+    raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
+    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "Gnome-terminal")
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
