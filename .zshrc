@@ -102,3 +102,6 @@ export PATH=$CABAL_HOME/bin:$PATH
 # nodebrew
 export NODEBREW_HOME=$HOME/.nodebrew/current
 export PATH=$NODEBREW_HOME/bin:$PATH
+
+# OPAM configuration
+. /home/cohama/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

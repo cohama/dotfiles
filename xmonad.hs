@@ -228,11 +228,9 @@ myLayout = avoidStruts $ tiled ||| Mirror tiled ||| Full
 --
 myManageHook = myDefaultHook <+> manageDocks
   where
-    myDefaultHook = composeAll
-      [ className =? "MPlayer"        --> doFloat
-      , className =? "Gimp"           --> doFloat
-      , resource  =? "desktop_window" --> doIgnore
-      , resource  =? "kdesktop"       --> doIgnore ]
+    myDefaultHook = composeAll [
+            className =? "Firefox"        --> doShift "2"
+        ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -289,7 +287,7 @@ myPP = xmobarPP {
 }
 
 -- Key binding to toggle the gap for the bar.
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+toggleStrutsKey XConfig {XMonad.modMask = modmask} = (modmask, xK_b)
 
 defaults = defaultConfig {
       -- simple stuff
