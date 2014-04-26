@@ -21,8 +21,6 @@ import XMonad.Actions.SpawnOn
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-import Control.Monad (liftM2)
-
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
