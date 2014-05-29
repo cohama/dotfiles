@@ -106,3 +106,10 @@ export PATH=$NODEBREW_HOME/bin:$PATH
 
 # OPAM configuration
 . /home/cohama/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# rbenv
+if [[ -d ~/.rbenv ]]; then
+  export RBENV_HOME=~/.rbenv
+  export PATH=$RBENV_HOME/bin:$PATH
+  eval "$(rbenv init -)"
+fi
