@@ -19,6 +19,7 @@ alias -g LL='| less'
 alias vi='vim -u NONE -N'
 alias ,='cd ..'
 alias ,,='popd'
+alias c_='cd $_'
 
 # enable git completion
 source ~/dotfiles/git-completion.bash
