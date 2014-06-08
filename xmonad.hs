@@ -17,9 +17,12 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.WindowGo
 import XMonad.Actions.SpawnOn
+import XMonad.Layout.Dishes
+import XMonad.Layout.Simplest
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import Data.Ratio ((%))
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -190,7 +193,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts $ Simplest ||| Dishes 1 (7%8) ||| tiled ||| Mirror tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
