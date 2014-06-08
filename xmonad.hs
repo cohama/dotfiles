@@ -219,7 +219,11 @@ myLayout = avoidStruts $ tiled ||| Mirror tiled ||| Full
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = manageDocks <+> manageSpawn
+myManageHook = defaultFloatings <+> manageDocks <+> manageSpawn
+  where
+    defaultFloatings = composeAll
+        [ title =? "Firefox Preferences" --> doFloat
+        ]
 
 ------------------------------------------------------------------------
 -- Event handling
