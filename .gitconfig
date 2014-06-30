@@ -6,6 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = gvim -f
+	pager = less
 [alias]
 	a = add
 	aa = add -A
