@@ -10,3 +10,6 @@ done
 mkdir -p ~/.xmonad
 ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
+# lilyterm
+mkdir -p ~/.config/lilyterm
+ln -Fsi ~/dotfiles/default.conf ~/.config/lilyterm
