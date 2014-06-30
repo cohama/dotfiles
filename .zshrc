@@ -96,6 +96,7 @@ function mkcd() {
 
 export EDITOR='vim'
 export PAGER='less'
+export LESS='-XFMWR'
 
 # cabal
 export CABAL_HOME=~/.cabal
