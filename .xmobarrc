@@ -1,5 +1,5 @@
 Config {
-    font = "xft:Meiryo UI:size=10",
+    font = "xft:Meiryo UI:size=12",
     bgColor = "black",
     fgColor = "grey",
     position = TopW L 90,
@@ -8,6 +8,11 @@ Config {
                  "-L","3","-H","50","--normal","green","--high","red"] 10,
         Run Memory ["-t","<fc=white>Mem: </fc><usedratio>%"] 10,
         Run Date "%Y/%m/%d %a %k:%M" "date" 10,
+        Run Battery ["-t", "<fc=white>Bat: </fc><acstatus><watts> (<left>%) / <timeleft>",
+                   "-L", "10", "-H", "80", "-p", "3",
+                   "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+                   "-L", "-15", "-H", "-5",
+                   "-l", "red", "-m", "blue", "-h", "green"] 600,
         Run StdinReader
     ],
     sepChar = "%",
