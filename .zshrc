@@ -117,3 +117,7 @@ if [[ -d ~/.rbenv ]]; then
   export PATH=$RBENV_HOME/bin:$PATH
   eval "$(rbenv init -)"
 fi
+
+# golang
+export GOPATH=~/go
+export PATH=$PATH:~/go/bin
