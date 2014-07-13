@@ -60,7 +60,7 @@ bindkey -M viins "" backward-char
 bindkey -M viins "" kill-line
 setopt auto_pushd
 setopt correct
-unsetopt extended_glob
+setopt extendedglob
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
