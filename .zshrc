@@ -121,3 +121,6 @@ fi
 # golang
 export GOPATH=~/go
 export PATH=$PATH:~/go/bin
+
+# peco
+[[ -e ~/dotfiles/peco.zsh ]] && source ~/dotfiles/peco.zsh
