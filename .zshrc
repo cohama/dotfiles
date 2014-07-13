@@ -22,7 +22,11 @@ alias ,,='popd'
 alias c_='cd $_'
 
 # enable git completion
-source ~/dotfiles/git-completion.bash
+zstyle ':completion:*:*:git:*' script ~/dotfiles/git-completion.bash
+fpath=(~/.zsh $fpath)
+# source ~/dotfiles/git-completion.zsh
+# source ~/dotfiles/git-completion.bash
+source ~/dotfiles/git-prompt.sh
 
 # environment variables
 export LANG=ja_JP.UTF-8
