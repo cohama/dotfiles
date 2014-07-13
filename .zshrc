@@ -106,7 +106,7 @@ export PATH=$CABAL_HOME/bin:$PATH
 export NODEBREW_HOME=$HOME/.nodebrew/current
 export PATH=$NODEBREW_HOME/bin:$PATH
 
-export PATH=~/proj/vim/vim-themis/bin:$PATH
+export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 
 # OPAM configuration
 . /home/cohama/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
