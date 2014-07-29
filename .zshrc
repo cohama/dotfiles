@@ -128,3 +128,6 @@ export PATH=$PATH:~/go/bin
 
 # peco
 [[ -e ~/dotfiles/peco.zsh ]] && source ~/dotfiles/peco.zsh
+
+# tmuxinator.zsh
+source ~/dotfiles/tmuxinator/tmuxinator.zsh
