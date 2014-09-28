@@ -136,4 +136,4 @@ source ~/dotfiles/tmuxinator/tmuxinator.zsh
 export HAXE_STD_PATH=/opt/haxe/std
 
 # My local settings
-source ~/dotfiles/local.zsh
+source ~/dotfiles/.local.zsh

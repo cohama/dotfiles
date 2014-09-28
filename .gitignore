@@ -2,3 +2,4 @@
 .netrwhist
 .local.*.vimrc
 .local.vimrc
+.local.zsh
