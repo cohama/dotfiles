@@ -131,3 +131,9 @@ export PATH=$PATH:~/go/bin
 
 # tmuxinator.zsh
 source ~/dotfiles/tmuxinator/tmuxinator.zsh
+
+# Haxe
+export HAXE_STD_PATH=/opt/haxe/std
+
+# My local settings
+source ~/dotfiles/local.zsh
