@@ -89,6 +89,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
+    -- backlight brightness up
+    , ((0,                  0x1008FF02), spawn "xbacklight -inc 15")
+
+    -- backlight brightness down
+    , ((0,                  0x1008FF03), spawn "xbacklight -dec 15")
+
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
     , ((modm,               xK_w     ), kill)
