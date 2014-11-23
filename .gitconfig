@@ -45,4 +45,6 @@
 [push]
 	default = simple
 
+[diff]
+	algorithm = histogram
 # vim: ts=4 noexpandtab
