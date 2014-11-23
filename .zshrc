@@ -135,5 +135,8 @@ source ~/dotfiles/tmuxinator/tmuxinator.zsh
 # Haxe
 export HAXE_STD_PATH=/opt/haxe/std
 
+# Vim
+export PATH=~/app/vim/bin:$PATH
+
 # My local settings
 source ~/dotfiles/.local.zsh
