@@ -19,4 +19,6 @@ nnoremap o :<C-u>open google<Space>
 nnoremap <C-h> :<C-u>history <Space>
 nnoremap <C-n> :<C-u>nohlsearch<CR>
 
+nnoremap <C-q> <Nop>
+
 " vim: ft=vim
