@@ -20,6 +20,7 @@ alias vi='vim -u NONE -N'
 alias ,='cd ..'
 alias ,,='popd'
 alias c_='cd $_'
+alias T='tmux -2'
 
 # enable git completion
 zstyle ':completion:*:*:git:*' script ~/dotfiles/git-completion.bash
