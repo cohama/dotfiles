@@ -50,7 +50,6 @@ myModMask = mod4Mask
 
 
 myVimCommand = "gvim"
-myBrowser = "firefox"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -262,8 +261,14 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-    raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
-    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "Gnome-terminal")
+    spawn $ "pkill trayer; " ++ trayerCommand
+    spawn "nitrogen --restore"
+    -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
+    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "LilyTerm")
+        where
+            trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 21 --alpha 0"
+
+
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
