@@ -1,4 +1,5 @@
 autoload -Uz compinit && compinit
+autoload -U colors && colors
 
 # some more ls aliases
 alias grep='grep --color=auto'
@@ -180,11 +181,18 @@ export LANG=ja_JP.UTF-8
 
 # prompt
 precmd() {
+  local preexit=$?
   psvar=()
   psvar[1]=$(__git_ps1 "(git: %s)")
+  if [[ preexit -eq 0 ]]; then
+    psvar[2]=""
+  else
+    psvar[2]="[$preexit]"
+  fi
 }
-PROMPT="%B%F{cyan}%n@%m: %F{red}%~%F{yellow} %1v%f%b
+PROMPT="%B%{$fg[cyan]%}%n@%m: %{$fg[red]%}%~%{$fg[yellow]%} %1v%f%{$reset_color%}
 %# "
+RPROMPT="%{$fg_no_bold[green]%}%2v%{$reset_color%}"
 
 # configuration
 setopt auto_cd
