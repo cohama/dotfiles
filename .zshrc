@@ -271,14 +271,10 @@ export PATH=$NODEBREW_HOME/bin:$PATH
 export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 
 # OPAM configuration
-. /home/cohama/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 # rbenv
-if [[ -d ~/.rbenv ]]; then
-  export RBENV_HOME=~/.rbenv
-  export PATH=$RBENV_HOME/bin:$PATH
-  eval "$(rbenv init -)"
-fi
+eval "$(rbenv init -)" > /dev/null 2>&1 || true
 
 # golang
 export GOPATH=~/go
@@ -292,9 +288,6 @@ source ~/dotfiles/tmuxinator/tmuxinator.zsh
 
 # Haxe
 export HAXE_STD_PATH=/opt/haxe/std
-
-# Vim
-export PATH=~/app/vim/bin:$PATH
 
 # My local settings
 source ~/dotfiles/.local.zsh
