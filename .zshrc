@@ -224,7 +224,7 @@ function do_enter() {
   elif [ "$BUFFER" = " " ]; then
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
       echo
-      echo -e "\e[0;33m--- git status ---\e[0m"
+      echo -e "$fg_no_bold[yellow]--- git status ---$reset_color"
       git status -s
     fi
   fi
@@ -253,6 +253,7 @@ function mkcd() {
   fi
 }
 
+# colored man page
 function man() {
   env LESS_TERMCAP_mb=$'\E[01;31m' \
   LESS_TERMCAP_md=$'\E[01;38;5;74m' \
