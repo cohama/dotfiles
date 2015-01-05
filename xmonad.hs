@@ -27,7 +27,7 @@ import Data.Ratio ((%))
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "lilyterm"
+myTerminal = "lilyterm -e tmux -2"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
