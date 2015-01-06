@@ -283,7 +283,7 @@ export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 # rbenv
-eval "$(rbenv init -)" > /dev/null 2>&1 || true
+command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 
 # golang
 export GOPATH=~/go
