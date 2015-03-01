@@ -19,6 +19,7 @@ import XMonad.Actions.WindowGo
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Dishes
 import XMonad.Layout.Simplest
+import XMonad.Layout.IndependentScreens
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -60,8 +61,8 @@ myVimCommand = "gvim"
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces :: [WorkspaceId]
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces :: ScreenId -> [WorkspaceId]
+myWorkspaces screens = withScreens screens ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -96,7 +97,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
-    , ((modm,               xK_w     ), kill)
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -164,9 +164,28 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+    [((m .|. modm, k), windows $ onCurrentScreen f i)
+        | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+    ++
+
+    --
+    -- mod-{w,e}, Switch to physical/Xinerama screens 1 or 2
+    -- mod-shift-{w,e}, Move client to screen 1 or 2
+    --
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
+
+    --
+    -- mod-r, Switch to the next physical/Xinerama screen
+    -- mod-shift-r, Move client to the next screen
+    --
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -282,7 +301,8 @@ myStartupHook = do
 -- No need to modify this.
 --
 main = do
-    x <- statusBar myBar myPP toggleStrutsKey defaults
+    screens <- countScreens
+    x <- statusBar myBar myPP toggleStrutsKey $ defaults {workspaces = myWorkspaces screens}
     xmonad x
 
 -- Command to launch the bar.
@@ -305,7 +325,6 @@ defaults = defaultConfig {
         clickJustFocuses   = myClickJustFocuses,
         borderWidth        = myBorderWidth,
         modMask            = myModMask,
-        workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
 
