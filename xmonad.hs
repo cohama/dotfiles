@@ -285,7 +285,8 @@ myStartupHook = do
     -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
     raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "LilyTerm")
         where
-            trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 21 --alpha 0"
+            -- NOTE: trayer-srg is used for multi monitor support instead of trayer
+            trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 21 --alpha 0 --monitor primary"
 
 
 
