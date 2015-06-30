@@ -1,4 +1,5 @@
 autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 autoload -U colors && colors
 
 # some more ls aliases
@@ -300,3 +301,6 @@ export HAXE_STD_PATH=/opt/haxe/std
 
 # My local settings
 source ~/dotfiles/.local.zsh
+
+# haskell-stack completion
+command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(which stack)")"
