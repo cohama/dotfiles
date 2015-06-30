@@ -20,6 +20,7 @@ import XMonad.Actions.SpawnOn
 import XMonad.Layout.Dishes
 import XMonad.Layout.Simplest
 import XMonad.Layout.IndependentScreens
+import qualified XMonad.Actions.CycleWS as CW
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -97,6 +98,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
+    , ((modm              , xK_w     ), kill)
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -106,9 +108,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
-
-    -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
@@ -169,23 +168,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
 
-    --
-    -- mod-{w,e}, Switch to physical/Xinerama screens 1 or 2
-    -- mod-shift-{w,e}, Move client to screen 1 or 2
-    --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-    ++
 
-    --
-    -- mod-r, Switch to the next physical/Xinerama screen
-    -- mod-shift-r, Move client to the next screen
-    --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
+    [((modm, xK_Tab), CW.nextScreen)
+    ]
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
