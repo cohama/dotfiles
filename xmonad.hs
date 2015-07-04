@@ -11,7 +11,6 @@ OPTIONS_GHC -fno-warn-missing-signatures
 --
 
 import XMonad
-import Data.Monoid
 import System.Exit
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
