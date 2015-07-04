@@ -169,7 +169,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
     [((modm, xK_Tab), CW.nextScreen)
-    ,((modm .|. shiftMask, xK_Tab), CW.shiftNextScreen)
+    ,((modm .|. shiftMask, xK_Tab), CW.shiftNextScreen >> CW.nextScreen)
     ]
 
 ------------------------------------------------------------------------
