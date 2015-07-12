@@ -14,8 +14,10 @@ cnoremap <C-d> <Down>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-nnoremap t :<C-u>tabopen google<Space>
-nnoremap o :<C-u>open google<Space>
+nnoremap t :<C-u>tabopen<Space>
+nnoremap T :<C-u>tabopen google<Space>
+nnoremap o :<C-u>open<Space>
+nnoremap O :<C-u>open google<Space>
 nnoremap <C-h> :<C-u>history!<Space>-max=1<Space>
 nnoremap <C-n> :<C-u>nohlsearch<CR>
 
