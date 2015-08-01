@@ -18,12 +18,12 @@ import XMonad.Actions.WindowGo
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Dishes
 import XMonad.Layout.Simplest
-import XMonad.Layout.IndependentScreens
 import qualified XMonad.Actions.CycleWS as CW
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Data.Ratio ((%))
+import Data.List as L
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -61,8 +61,8 @@ myVimCommand = "gvim"
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces :: ScreenId -> [WorkspaceId]
-myWorkspaces screens = withScreens screens ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces :: [WorkspaceId]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -162,15 +162,40 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-    [((m .|. modm, k), windows $ onCurrentScreen f i)
-        | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.greedyView, 0), (\n -> W.greedyView n . W.shift n, shiftMask)]]
+    [((m .|. modm, k), windows $ f i)
+        | (i, k) <- zip (workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(viewOn 0, 0), (\n -> W.view n . shiftOn 0 n, shiftMask)]]
     ++
 
 
     [((modm, xK_Tab), CW.nextScreen)
     ,((modm .|. shiftMask, xK_Tab), CW.shiftNextScreen >> CW.nextScreen)
     ]
+
+currentScreenId :: W.StackSet i l a sid sd -> sid
+currentScreenId = W.screen . W.current
+
+viewOn :: (Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+viewOn sid wid ss
+    | sid == currentScreenId ss
+        = W.view wid ss
+    | Just scrn <- L.find ((sid==) . W.screen) (W.visible ss)
+        = let newwid = W.tag . W.workspace $ scrn
+          in
+          W.view wid $ W.view newwid $ ss
+    | otherwise
+        = ss
+
+shiftOn :: (Ord a, Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+shiftOn sid wid ss
+    | sid == currentScreenId ss
+        = W.shift wid ss
+    | Just scrn <- L.find ((sid==) . W.screen) (W.visible ss)
+        = let newwid = W.tag . W.workspace $ scrn
+          in
+          W.shift wid $ W.view newwid $ W.shift newwid $ ss
+    | otherwise
+        = ss
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -287,8 +312,7 @@ myStartupHook = do
 -- No need to modify this.
 --
 main = do
-    screens <- countScreens
-    x <- statusBar myBar myPP toggleStrutsKey $ defaults {workspaces = myWorkspaces screens}
+    x <- statusBar myBar myPP toggleStrutsKey $ defaults
     xmonad x
 
 -- Command to launch the bar.
@@ -296,7 +320,8 @@ myBar = "xmobar"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 myPP = xmobarPP {
-    ppCurrent = xmobarColor "#000000" "#BCBC52" . wrap " " " ",
+    ppCurrent = xmobarColor "#000000" "#BCBC52" . wrap "[" "]",
+    ppVisible = xmobarColor "#101010" "#808038" . wrap "[" "]",
     ppHidden = xmobarColor "#808080" "#505050" . wrap " " " ",
     ppTitle = xmobarColor "#20F0C0" "" . shorten 150
 }
@@ -311,6 +336,7 @@ defaults = defaultConfig {
         clickJustFocuses   = myClickJustFocuses,
         borderWidth        = myBorderWidth,
         modMask            = myModMask,
+        workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
 
