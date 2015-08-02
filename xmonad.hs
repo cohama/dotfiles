@@ -174,7 +174,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(viewOn 0, 0), (\n -> W.view n . shiftOn 0 n, shiftMask)]]
+        -- , (f, m) <- [(viewOnScreen 0, 0), (\n -> W.view n . shiftOn 0 n, shiftMask)]]
+        , (f, m) <- [(viewOnScreen 0, 0), (shiftAndViewOnScreen 0, shiftMask)]]
     ++
 
 
@@ -182,30 +183,23 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ,((modm .|. shiftMask, xK_Tab), CW.shiftNextScreen >> CW.nextScreen)
     ]
 
-currentScreenId :: W.StackSet i l a sid sd -> sid
-currentScreenId = W.screen . W.current
-
-viewOn :: (Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
-viewOn sid wid ss
-    | sid == currentScreenId ss
-        = W.view wid ss
-    | Just scrn <- L.find ((sid==) . W.screen) (W.visible ss)
+-- Similar to XMonad.Actions.OnScreen but more flexible and easier.
+onScreen :: (Eq sid, Eq i) => (i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd) -> sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+onScreen f sid wid ss
+    | Just scrn <- L.find ((sid==) . W.screen) (W.screens ss)
         = let newwid = W.tag . W.workspace $ scrn
           in
-          W.view wid $ W.view newwid $ ss
-    | otherwise
-        = ss
+          f wid $ W.view newwid $ ss
+    | otherwise = ss
 
-shiftOn :: (Ord a, Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
-shiftOn sid wid ss
-    | sid == currentScreenId ss
-        = W.shift wid ss
-    | Just scrn <- L.find ((sid==) . W.screen) (W.visible ss)
-        = let newwid = W.tag . W.workspace $ scrn
-          in
-          W.shift wid $ W.view newwid $ W.shift newwid $ ss
-    | otherwise
-        = ss
+viewOnScreen :: (Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+viewOnScreen = onScreen W.view
+
+shiftOnScreen :: (Ord a, Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+shiftOnScreen sid wid ss = maybe ss (\w -> onScreen (flip W.shiftWin w) sid wid ss) (W.peek ss)
+
+shiftAndViewOnScreen :: (Ord a, Eq sid, Eq i) => sid -> i -> W.StackSet i l a sid sd -> W.StackSet i l a sid sd
+shiftAndViewOnScreen sid wid = viewOnScreen sid wid . shiftOnScreen sid wid
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
