@@ -19,6 +19,7 @@ import XMonad.Actions.SpawnOn
 import XMonad.Layout.Dishes
 import XMonad.Layout.Simplest
 import qualified XMonad.Actions.CycleWS as CW
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -90,10 +91,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- backlight brightness up
-    , ((0,                  0x1008FF02), spawn "xbacklight -inc 15")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 7")
 
     -- backlight brightness down
-    , ((0,                  0x1008FF03), spawn "xbacklight -dec 15")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 6")
+
+    -- sound volume up
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 0.5dB-")
+
+    -- sound volume down
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 0.5dB+")
+
+    -- sound volume down
+    , ((0, xF86XK_AudioMute), spawn "amixer set Master toggle")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
