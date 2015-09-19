@@ -16,8 +16,9 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.WindowGo
 import XMonad.Actions.SpawnOn
-import XMonad.Layout.Dishes
+import XMonad.Layout.Grid
 import XMonad.Layout.Simplest
+import XMonad.Layout.Spacing (spacing)
 import qualified XMonad.Actions.CycleWS as CW
 import Graphics.X11.ExtraTypes.XF86
 
@@ -68,7 +69,7 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#e05050"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -231,19 +232,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ Simplest ||| Dishes 1 (7%8) ||| tiled ||| Mirror tiled
-  where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
+myLayout = avoidStruts $ spacing 1 Simplest ||| spacing 5 (GridRatio 1.5)
 
 ------------------------------------------------------------------------
 -- Window rules:
