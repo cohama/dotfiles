@@ -14,7 +14,8 @@ import XMonad
 import System.Exit
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
-import XMonad.Actions.WindowGo
+import XMonad.Actions.WindowGo (raiseMaybe)
+import XMonad.Actions.WindowBringer (gotoMenuArgs)
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Grid
 import XMonad.Layout.Simplest
@@ -152,6 +153,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Deincrement the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+
+    -- Window Briger!
+    , ((modm              , xK_i     ), gotoMenuArgs ["-i", "-l", "10", "-fn", "Sans-10", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"])
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
