@@ -155,7 +155,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Window Briger!
-    , ((modm              , xK_i     ), gotoMenuArgs ["-i", "-l", "10", "-fn", "Sans-10", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"])
+    , ((modm              , xK_i     ), gotoMenuArgs ["-i", "-l", "10", "-fn", "Nasu-12", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"])
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
