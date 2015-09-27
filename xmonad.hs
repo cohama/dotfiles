@@ -18,6 +18,7 @@ import XMonad.Actions.WindowGo
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Grid
 import XMonad.Layout.Simplest
+import XMonad.Layout.OneBig
 import XMonad.Layout.Spacing (spacing)
 import qualified XMonad.Actions.CycleWS as CW
 import Graphics.X11.ExtraTypes.XF86
@@ -232,7 +233,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ spacing 1 Simplest ||| spacing 5 (GridRatio 1.5)
+myLayout = avoidStruts $ spacing 1 Simplest ||| spacing 5 (GridRatio 1.5) ||| spacing 5 (OneBig 0.6 0.6)
 
 ------------------------------------------------------------------------
 -- Window rules:
