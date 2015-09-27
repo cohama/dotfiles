@@ -1,8 +1,10 @@
+set titlestring=firefox
+set nextpattern& nextpattern^=次へ
+set previouspattern& previouspattern^=前へ
+
 nnoremap j 3j
 nnoremap k 3k
 
-nnoremap d <Nop>
-nnoremap dd d
 nnoremap x :<C-u>q<CR>
 
 nnoremap J gt
