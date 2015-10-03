@@ -20,7 +20,7 @@ import XMonad.Actions.SpawnOn
 import XMonad.Layout.Grid
 import XMonad.Layout.Simplest
 import XMonad.Layout.OneBig
-import XMonad.Layout.Spacing (spacing)
+import XMonad.Layout.Spacing (smartSpacing)
 import qualified XMonad.Actions.CycleWS as CW
 import Graphics.X11.ExtraTypes.XF86
 
@@ -82,7 +82,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -i -fn 'Monospace-12' -o '0.9' -nb '#202020' -nf '#e0e0e0' ")
+    , ((modm,               xK_p     ), spawn "dmenu_run -i -fn 'Monospace-18' -o '0.9' -nb '#202020' -nf '#e0e0e0' ")
 
     -- launch gVim
     , ((modm,               xK_v     ), spawn myVimCommand)
@@ -155,7 +155,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Window Briger!
-    , ((modm              , xK_i     ), gotoMenuArgs ["-i", "-l", "10", "-fn", "Nasu-12", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"])
+    , ((modm              , xK_i     ), gotoMenuArgs ["-i", "-l", "10", "-fn", "Nasu-18", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"])
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -237,7 +237,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ spacing 1 Simplest ||| spacing 5 (GridRatio 1.5) ||| spacing 5 (OneBig 0.6 0.6)
+myLayout = avoidStruts $ smartSpacing 5 $ OneBig 0.6 0.6 ||| GridRatio 1.5 ||| Simplest
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -294,7 +294,7 @@ myStartupHook = do
     raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "LilyTerm")
         where
             -- NOTE: trayer-srg is used for multi monitor support instead of trayer
-            trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 21 --alpha 0 --monitor primary"
+            trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 28 --alpha 0 --monitor primary"
 
 
 

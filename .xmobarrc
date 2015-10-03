@@ -1,5 +1,5 @@
 Config {
-    font = "xft:Meiryo UI:size=10",
+    font = "xft:Meiryo UI:size=14",
     bgColor = "black",
     fgColor = "grey",
     position = TopW L 90,
