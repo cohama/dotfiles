@@ -1,6 +1,6 @@
 set titlestring=firefox
-set nextpattern& nextpattern^=次へ
-set previouspattern& previouspattern^=前へ
+set nextpattern& nextpattern^=次へ,次のページへ
+set previouspattern& previouspattern^=前へ,前のページへ
 
 nnoremap j 3j
 nnoremap k 3k
