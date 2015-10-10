@@ -237,7 +237,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ smartSpacing 5 $ OneBig 0.6 0.6 ||| GridRatio 1.5 ||| Simplest
+myLayout = avoidStruts $ smartSpacing 5 $ Mirror (OneBig 0.6 0.6) ||| GridRatio 1.5 ||| Simplest
 
 ------------------------------------------------------------------------
 -- Window rules:
