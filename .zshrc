@@ -229,6 +229,7 @@ function do_enter() {
       git status -s
     fi
   fi
+  echo -en "\033[0m"
   zle accept-line
   return 0
 }
