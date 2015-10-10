@@ -23,6 +23,8 @@ alias ,='cd ..'
 alias ,,='popd'
 alias c_='cd $_'
 alias T='tmux -2'
+alias sudo='sudo '
+alias sc='systemctl'
 
 source ~/dotfiles/git-prompt.sh
 
