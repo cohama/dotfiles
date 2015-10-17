@@ -3,3 +3,4 @@
 .local.*.vimrc
 .local.vimrc
 .local.zsh
+.local.zshenv
