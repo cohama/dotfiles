@@ -285,8 +285,8 @@ command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 # tmuxinator.zsh
 source ~/dotfiles/tmuxinator/tmuxinator.zsh
 
-# My local settings
-source ~/dotfiles/.local.zsh
-
 # haskell-stack completion
 command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(which stack)")"
+
+# My local settings
+[[ -e ~/dotfiles/.local.zsh  ]] && source ~/dotfiles/.local.zsh
