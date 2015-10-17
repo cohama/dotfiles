@@ -54,7 +54,7 @@ myBorderWidth = 2
 myModMask = mod4Mask
 
 
-myVimCommand = "gvim"
+myVimCommand = "/bin/zsh -c '/usr/bin/gvim -f'"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
