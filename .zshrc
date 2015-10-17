@@ -273,34 +273,17 @@ export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
 
-# cabal
-export CABAL_HOME=~/.cabal
-export PATH=$CABAL_HOME/bin:$PATH
-
-# nodebrew
-export NODEBREW_HOME=$HOME/.nodebrew/current
-export PATH=$NODEBREW_HOME/bin:$PATH
-
-export PATH=~/.vim/bundle/vim-themis/bin:$PATH
-
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 # rbenv
 command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 
-# golang
-export GOPATH=~/go
-export PATH=$PATH:~/go/bin
-
 # peco
 [[ -e ~/dotfiles/peco.zsh ]] && source ~/dotfiles/peco.zsh
 
 # tmuxinator.zsh
 source ~/dotfiles/tmuxinator/tmuxinator.zsh
-
-# Haxe
-export HAXE_STD_PATH=/opt/haxe/std
 
 # My local settings
 source ~/dotfiles/.local.zsh
