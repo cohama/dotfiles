@@ -7,8 +7,17 @@ nnoremap k 3k
 
 nnoremap x :<C-u>q<CR>
 
+command! CloseChildrenTabs js treeCloseChildrenTabs(gBrowser.selectedTab)
+command! CloseCurrentTreeTabs js treeCloseCurrentTreeTabs(gBrowser.selectedTab)
+
 nnoremap J gt
 nnoremap K gT
+
+command! -count MoveToNextSiblingTab execute 'js treeMoveToNextSiblingTab("' + <q-count> + '")'
+command! -count MoveToPreviousSiblingTab execute 'js treeMoveToPreviousSiblingTab("' + <q-count> + '")'
+
+nnoremap <C-S-J> :MoveToNextSiblingTab<CR>
+nnoremap <C-S-K> :MoveToPreviousSiblingTab<CR>
 
 cnoremap <C-p> <Up>
 cnoremap <C-d> <Down>
@@ -21,6 +30,120 @@ nnoremap o :<C-u>open<Space>
 nnoremap <C-h> :<C-u>history!<Space>-max=1<Space>
 nnoremap <C-n> :<C-u>nohlsearch<CR>
 
+nnoremap <C-t> :<C-u>js TreeStyleTabService.readyToOpenChildTab(gBrowser.selectedTab, false)<CR>:tabnew<CR>:open<Space>
+nnoremap <C-S-t> :<C-u>js TreeStyleTabService.readyToOpenChildTab(gBrowser.selectedTab, false)<CR>:tabduplicate<CR>
+
+nnoremap za :<C-u>js treeFoldToggle(gBrowser.selectedTab)<CR>
+nnoremap zo :<C-u>js treeFoldExpand(gBrowser.selectedTab)<CR>
+nnoremap zc :<C-u>js treeFoldCollapseUp(gBrowser.selectedTab)<CR>
+
+nnoremap zr <Nop>
+nnoremap zm <Nop>
+
+nnoremap zO :<C-u>js treeFoldExpandRoot(gBrowser.selectedTab)<CR>
+nnoremap zC :<C-u>js treeFoldCollapseRoot(gBrowser.selectedTab)<CR>
+
+nnoremap zR :<C-u>js treeFoldExpandAll()<CR>
+nnoremap zM :<C-u>js treeFoldCollapseAll()<CR>
+
 nnoremap <C-q> <Nop>
 
-" vim: ft=vim
+js <<EOS
+var treeFoldExpand = function(tab) {
+  gBrowser.treeStyleTab.collapseExpandSubtree(tab, false);
+};
+
+var treeFoldCollapse = function(tab) {
+  gBrowser.treeStyleTab.collapseExpandSubtree(tab, true);
+}
+
+var treeFoldToggle = function(tab) {
+  gBrowser.treeStyleTab.collapseExpandSubtree(tab, TreeStyleTabService.isSubtreeCollapsed(tab));
+}
+
+var treeFoldCollapseUp = function(tab) {
+  treeFoldCollapse(TreeStyleTabService.getParentTab(tab));
+}
+
+var treeFoldExpandRoot = function(tab) {
+  treeFoldExpand(TreeStyleTabService.getRootTab(tab));
+}
+
+var treeFoldCollapseRoot = function(tab) {
+  treeFoldCollapse(TreeStyleTabService.getRootTab(tab));
+}
+
+var treeFoldExpandAll = function() {
+  TreeStyleTabService.rootTabs.forEach(treeFoldExpand);
+}
+
+var treeFoldCollapseAll = function() {
+  TreeStyleTabService.rootTabs.forEach(treeFoldCollapse);
+}
+
+var treeMoveToNextSiblingTab = function(count) {
+  var count = (+count) ? +count : 1;
+  var tab = gBrowser.selectedTab;
+  var nextTab = tab;
+  while (count > 0) {
+    count -= 1
+    nextTab = treeGetNextSiblingTab(nextTab);
+  }
+  gBrowser.selectedTab = nextTab;
+}
+
+var treeMoveToPreviousSiblingTab = function(count) {
+  var count = (+count) ? +count : 1;
+  var tab = gBrowser.selectedTab;
+  var prevTab = tab;
+  while (count > 0) {
+    count -= 1
+    prevTab = treeGetPreviousSiblingTab(prevTab);
+  }
+  gBrowser.selectedTab = prevTab;
+}
+
+var treeGetNextSiblingTab = function(tab) {
+  var nextTab = TreeStyleTabService.getNextSiblingTab(tab);
+  if (nextTab) {
+    return nextTab;
+  } else {
+    var parentTab = TreeStyleTabService.getParentTab(tab);
+    if (parentTab) {
+      return treeGetNextSiblingTab(parentTab);
+    } else {
+      return tab;
+    }
+  }
+}
+
+var treeGetPreviousSiblingTab = function(tab) {
+  var prevTab = TreeStyleTabService.getPreviousSiblingTab(tab);
+  if (prevTab) {
+    return prevTab;
+  } else {
+    var parentTab = TreeStyleTabService.getParentTab(tab);
+    if (parentTab) {
+      return treeGetPreviousSiblingTab(parentTab);
+    } else {
+      return tab;
+    }
+  }
+}
+
+var treeCloseChildrenTabs = function(tab) {
+  var children = TreeStyleTabService.getDescendantTabs(tab);
+  children.forEach(function(t) {
+    tabs.remove(t);
+  });
+}
+
+var treeCloseCurrentTreeTabs = function(tab) {
+  var rootTab = TreeStyleTabService.getRootTab(gBrowser.selectedTab);
+  gBrowser.selectedTab = rootTab;
+  treeCloseChildrenTabs(rootTab);
+  tab.remove(rootTab);
+}
+
+
+EOS
