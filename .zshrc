@@ -282,9 +282,6 @@ command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 # peco
 [[ -e ~/dotfiles/peco.zsh ]] && source ~/dotfiles/peco.zsh
 
-# tmuxinator.zsh
-source ~/dotfiles/tmuxinator/tmuxinator.zsh
-
 # haskell-stack completion
 command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(which stack)")"
 
