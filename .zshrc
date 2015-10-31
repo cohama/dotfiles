@@ -36,6 +36,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
   source /usr/share/zsh/scripts/antigen/antigen.zsh
   antigen bundle mollifier/anyframe
+  antigen bundle zsh-users/zsh-syntax-highlighting
   antigen apply
 fi
 
