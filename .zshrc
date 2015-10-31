@@ -196,20 +196,15 @@ compdef _hosts upgrade
 # environment variables
 export LANG=ja_JP.UTF-8
 
-# prompt
-precmd() {
-  local preexit=$?
-  psvar=()
-  psvar[1]=$(__git_ps1 "(git: %s)")
-  if [[ preexit -eq 0 ]]; then
-    psvar[2]=""
-  else
-    psvar[2]="[$preexit]"
-  fi
-}
-PROMPT="%B%{$fg[cyan]%}%n@%m: %{$fg[red]%}%~%{$fg[yellow]%} %1v%f%{$reset_color%}
-%# "
-RPROMPT="%{$fg_no_bold[green]%}%2v%{$reset_color%}"
+# antigen
+if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
+  source /usr/share/zsh/scripts/antigen/antigen.zsh
+  antigen use oh-my-zsh
+  antigen bundle mollifier/anyframe
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+  antigen apply
+fi
 
 # configuration
 setopt auto_cd
@@ -287,17 +282,14 @@ export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
 
-# antigen
-if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
-  source /usr/share/zsh/scripts/antigen/antigen.zsh
-  antigen bundle mollifier/anyframe
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen apply
-fi
-
 # anyframe
 bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-execute-history
+
+# bullet-train
+BULLETTRAIN_TIME_SHOW=false
+BULLETTRAIN_STATUS_EXIT_SHOW=true
+BULLETTRAIN_DIR_EXTENDED=2
 
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
