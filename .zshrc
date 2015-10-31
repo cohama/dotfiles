@@ -1,6 +1,6 @@
 autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
-autoload -U colors && colors
+autoload -Uz colors && colors
 
 # some more ls aliases
 alias grep='grep --color=auto'
