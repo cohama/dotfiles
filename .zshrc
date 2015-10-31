@@ -32,14 +32,6 @@ source ~/dotfiles/git-prompt.sh
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# antigen
-if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
-  source /usr/share/zsh/scripts/antigen/antigen.zsh
-  antigen bundle mollifier/anyframe
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen apply
-fi
-
 # colored completion
 eval `dircolors -b`
 
@@ -82,7 +74,17 @@ zstyle ':completion:*:matches'         group 'yes'
 zstyle ':completion:*'                 group-name ''
 
 # if there are more than 5 options allow selecting from a menu
-zstyle ':completion:*'                 menu select=2
+zstyle ':completion:*'                 menu select=1 interactive
+setopt menu_complete
+zmodload zsh/complist
+bindkey -v '^i' expand-or-complete                            # 補完開始
+bindkey -M menuselect '^g' .send-break                        # send-break2回分の効果
+bindkey -M menuselect '^i' forward-char                       # 補完候補1つ右へ
+bindkey -M menuselect '^j' .accept-line                       # accept-line2回分の効果
+bindkey -M menuselect '^k' accept-and-infer-next-history      # 次の補完メニューを表示する
+bindkey -M menuselect '^n' down-line-or-history               # 補完候補1つ下へ
+bindkey -M menuselect '^p' up-line-or-history                 # 補完候補1つ上へ
+bindkey -M menuselect '^r' history-incremental-search-forward # 補完候補内インクリメンタルサーチ
 
 zstyle ':completion:*:messages'        format '%d'
 zstyle ':completion:*:options'         auto-description '%d'
@@ -285,15 +287,23 @@ export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
 
+# antigen
+if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
+  source /usr/share/zsh/scripts/antigen/antigen.zsh
+  antigen bundle mollifier/anyframe
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen apply
+fi
+
+# anyframe
+bindkey "d" anyframe-widget-cdr
+bindkey "m" anyframe-widget-execute-history
+
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 # rbenv
 command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
-
-# anyframe
-bindkey "d" anyframe-widget-cdr
-bindkey "m" anyframe-widget-execute-history
 
 # haskell-stack completion
 command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(which stack)")"
