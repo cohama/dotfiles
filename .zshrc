@@ -28,6 +28,17 @@ alias sc='systemctl'
 
 source ~/dotfiles/git-prompt.sh
 
+# cdr (used by anyframe)
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# antigen
+if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
+  source /usr/share/zsh/scripts/antigen/antigen.zsh
+  antigen bundle mollifier/anyframe
+  antigen apply
+fi
+
 # colored completion
 eval `dircolors -b`
 
