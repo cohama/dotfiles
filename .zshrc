@@ -2,30 +2,6 @@ autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz colors && colors
 
-# some more ls aliases
-alias grep='grep --color=auto'
-alias ls='ls --color=auto'
-alias lla='ls -alF'
-alias ll='ls -lF'
-alias la='ls -AF'
-alias l='ls -CF'
-alias chrome='/opt/google/chrome/chrome'
-alias gvim='gvim -f'
-alias cdv='cd ~/.vim'
-alias cdp='cd ~/proj'
-alias cdt='cd ~/tmp'
-alias :q=exit
-alias gitinit='git init && git commit --allow-empty -minit'
-alias be='bundle exec'
-alias -g LL='| less'
-alias vi='vim -u NONE -N'
-alias ,='cd ..'
-alias ,,='popd'
-alias c_='cd $_'
-alias T='tmux -2'
-alias sudo='sudo '
-alias sc='systemctl'
-
 source ~/dotfiles/git-prompt.sh
 
 # cdr (used by anyframe)
@@ -228,6 +204,30 @@ bindkey -M viins "" kill-line
 setopt auto_pushd
 setopt correct
 setopt extendedglob
+
+# some more ls aliases
+alias grep='grep --color=auto'
+alias ls='ls --color=auto'
+alias lla='ls -alF'
+alias ll='ls -lF'
+alias la='ls -AF'
+alias l='ls -CF'
+alias chrome='/opt/google/chrome/chrome'
+alias gvim='gvim -f'
+alias cdv='cd ~/.vim'
+alias cdp='cd ~/proj'
+alias cdt='cd ~/tmp'
+alias :q=exit
+alias gitinit='git init && git commit --allow-empty -minit'
+alias be='bundle exec'
+alias -g LL='| less'
+alias vi='vim -u NONE -N'
+alias ,='cd ..'
+alias ,,='popd'
+alias c_='cd $_'
+alias T='tmux -2'
+alias sudo='sudo '
+alias sc='systemctl'
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
