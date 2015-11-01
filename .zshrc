@@ -290,6 +290,7 @@ bindkey "m" anyframe-widget-execute-history
 BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_DIR_EXTENDED=2
+BULLETTRAIN_CONTEXT_SHOW=true
 
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
