@@ -2,8 +2,6 @@ autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz colors && colors
 
-source ~/dotfiles/git-prompt.sh
-
 # cdr (used by anyframe)
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
