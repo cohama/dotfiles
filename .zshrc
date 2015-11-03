@@ -5,6 +5,7 @@ autoload -Uz colors && colors
 # cdr (used by anyframe)
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
 
 # colored completion
 eval `dircolors -b`
