@@ -26,6 +26,7 @@
 	l2 = log --oneline --graph --all --decorate -20
 	l3 = log --oneline --graph --all --decorate -30
 	m = merge --no-ff --no-commit
+	p = push
 	r = reset
 	rb = rebase
 	rba = rebase --abort
@@ -47,4 +48,4 @@
 
 [diff]
 	algorithm = histogram
-# vim: ts=4 noexpandtab
+# vim: ts=4 noexpandtab sw=4 sts=4
