@@ -232,12 +232,13 @@ function do_enter() {
   if [ -z "$BUFFER" ]; then
     echo
     ls -F
-  elif [ "$BUFFER" = " " ]; then
+  elif [ "$BUFFER" = "git " ]; then
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
       echo
       echo -e "$fg_no_bold[yellow]--- git status ---$reset_color"
       git status -s
     fi
+    BUFFER=""
   fi
   echo -en "\033[0m"
   zle accept-line
@@ -247,7 +248,7 @@ zle -N do_enter
 bindkey '^m' do_enter
 
 function do_space() {
-  if [ "$BUFFER" = " " ]; then
+  if [ "$BUFFER" = "" ]; then
     LBUFFER="git "
   else
     LBUFFER="$LBUFFER "
