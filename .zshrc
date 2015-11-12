@@ -291,6 +291,7 @@ BULLETTRAIN_TIME_SHOW=false
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_DIR_EXTENDED=2
 BULLETTRAIN_CONTEXT_SHOW=true
+BULLETTRAIN_RUBY_SHOW=false
 
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
