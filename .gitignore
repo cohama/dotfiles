@@ -4,3 +4,4 @@
 .local.vimrc
 .local.zsh
 .local.zshenv
+.plugintest.vimrc
