@@ -14,6 +14,7 @@ import XMonad
 import System.Exit
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Actions.WindowGo (raiseMaybe)
 import XMonad.Actions.WindowBringer (gotoMenuArgs)
 import XMonad.Actions.SpawnOn
@@ -288,6 +289,7 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
+    setWMName "LG3D"
     spawn $ "pkill trayer; " ++ trayerCommand
     spawn "nitrogen --restore"
     -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
