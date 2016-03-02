@@ -329,7 +329,7 @@ myPP = xmobarPP {
 -- Key binding to toggle the gap for the bar.
 toggleStrutsKey XConfig {XMonad.modMask = modmask} = (modmask, xK_b)
 
-defaults = defaultConfig {
+defaults = def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
