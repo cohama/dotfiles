@@ -21,3 +21,6 @@ export HAXE_STD_PATH=/opt/haxe/std
 
 # local env
 [[ -e ~/dotfiles/.local.zshenv ]] && source ~/dotfiles/.local.zshenv
+
+# stack
+export PATH=$PATH:~/.local/bin
