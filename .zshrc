@@ -181,6 +181,9 @@ if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
   antigen apply
 fi
 
+# oh-my-zsh defines unnecessary aliases
+unalias -a
+
 # configuration
 setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
