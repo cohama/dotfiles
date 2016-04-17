@@ -1,5 +1,4 @@
 autoload -U path
-path=(~/tmp $path)
 
 # cabal
 export CABAL_HOME=~/.cabal
@@ -14,7 +13,7 @@ export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 
 # golang
 export GOPATH=~/go
-export PATH=$PATH:~/go/bin
+export PATH=~/go/bin:$PATH
 
 # Haxe
 export HAXE_STD_PATH=/opt/haxe/std
@@ -23,4 +22,4 @@ export HAXE_STD_PATH=/opt/haxe/std
 [[ -e ~/dotfiles/.local.zshenv ]] && source ~/dotfiles/.local.zshenv
 
 # stack
-export PATH=$PATH:~/.local/bin
+export PATH=~/.local/bin:$PATH
