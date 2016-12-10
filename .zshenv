@@ -23,3 +23,6 @@ export HAXE_STD_PATH=/opt/haxe/std
 
 # stack
 export PATH=~/.local/bin:$PATH
+
+# java
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
