@@ -24,6 +24,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Spacing (smartSpacing)
 import qualified XMonad.Actions.CycleWS as CW
 import Graphics.X11.ExtraTypes.XF86
+import Control.Concurrent (threadDelay)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -289,6 +290,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     setWMName "LG3D"
+    threadDelay $ 2000*1000
     spawn $ "pkill trayer; " ++ trayerCommand
     spawn "nitrogen --restore"
     -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
