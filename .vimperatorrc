@@ -30,9 +30,6 @@ nnoremap o :<C-u>open<Space>
 nnoremap <C-h> :<C-u>history!<Space>-max=1<Space>
 nnoremap <C-n> :<C-u>nohlsearch<CR>
 
-nnoremap <C-t> :<C-u>js TreeStyleTabService.readyToOpenChildTab(gBrowser.selectedTab, false)<CR>:tabnew<CR>:open<Space>
-nnoremap <C-S-t> :<C-u>js TreeStyleTabService.readyToOpenChildTab(gBrowser.selectedTab, false)<CR>:tabduplicate<CR>
-
 nnoremap za :<C-u>js treeFoldToggle(gBrowser.selectedTab)<CR>
 nnoremap zo :<C-u>js treeFoldExpand(gBrowser.selectedTab)<CR>
 nnoremap zc :<C-u>js treeFoldCollapseUp(gBrowser.selectedTab)<CR>
