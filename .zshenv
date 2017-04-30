@@ -26,3 +26,6 @@ export PATH=~/.local/bin:$PATH
 
 # java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+
+# rust
+export PATH=~/.cargo/bin:$PATH
