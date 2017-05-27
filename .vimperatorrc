@@ -45,6 +45,8 @@ nnoremap zM :<C-u>js treeFoldCollapseAll()<CR>
 
 nnoremap <C-q> <Nop>
 
+nnoremap <C-t> <C-t><Esc>o
+
 js <<EOS
 var treeFoldExpand = function(tab) {
   gBrowser.treeStyleTab.collapseExpandSubtree(tab, false);
