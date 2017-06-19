@@ -306,3 +306,7 @@ command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(w
 
 # My local settings
 [[ -e ~/dotfiles/.local.zsh  ]] && source ~/dotfiles/.local.zsh
+
+# pyenv
+command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
+command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
