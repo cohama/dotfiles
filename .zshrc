@@ -172,8 +172,8 @@ compdef _hosts upgrade
 export LANG=ja_JP.UTF-8
 
 # antigen
-if [[ -f /usr/share/zsh/scripts/antigen/antigen.zsh ]]; then
-  source /usr/share/zsh/scripts/antigen/antigen.zsh
+if [[ -f /usr/share/zsh/share/antigen.zsh ]]; then
+  source /usr/share/zsh/share/antigen.zsh
   antigen use oh-my-zsh
   antigen bundle mollifier/anyframe
   antigen bundle zsh-users/zsh-syntax-highlighting
@@ -288,12 +288,20 @@ bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-execute-history
 
 # bullet-train
-BULLETTRAIN_TIME_SHOW=false
+BULLETTRAIN_PROMPT_ORDER=(
+  status
+  dir
+  git
+  virtualenv
+)
 BULLETTRAIN_STATUS_EXIT_SHOW=true
-BULLETTRAIN_DIR_EXTENDED=2
-BULLETTRAIN_CONTEXT_SHOW=true
-BULLETTRAIN_RUBY_SHOW=false
-BULLETTRAIN_VIRTUALENV_SHOW=false
+BULLETTRAIN_VIRTUALENV_BG=green
+# BULLETTRAIN_TIME_SHOW=false
+# BULLETTRAIN_STATUS_EXIT_SHOW=true
+# BULLETTRAIN_DIR_EXTENDED=2
+# BULLETTRAIN_CONTEXT_SHOW=true
+# BULLETTRAIN_RUBY_SHOW=false
+# BULLETTRAIN_VIRTUALENV_SHOW=false
 
 # OPAM configuration
 source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
@@ -309,4 +317,4 @@ command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(w
 
 # pyenv
 command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
-command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
+# command -v pyenv > /dev/null 2>&1 && eval "$(pyenv virtualenv-init -)"
