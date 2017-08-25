@@ -1,6 +1,7 @@
 set titlestring=firefox
 set nextpattern& nextpattern^=次へ,次のページへ
 set previouspattern& previouspattern^=前へ,前のページへ
+set editor=gvim\ -f\ --cmd\ \"let g:singleton#disable=1\"
 
 nnoremap j 3j
 nnoremap k 3k
