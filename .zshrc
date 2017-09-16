@@ -285,7 +285,7 @@ export LESS='-XFMWR'
 
 # anyframe
 bindkey "d" anyframe-widget-cdr
-bindkey "m" anyframe-widget-execute-history
+bindkey "m" anyframe-widget-put-history
 
 # bullet-train
 BULLETTRAIN_PROMPT_ORDER=(
