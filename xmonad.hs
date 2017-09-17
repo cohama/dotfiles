@@ -258,7 +258,8 @@ myLayout = avoidStruts $ smartSpacing 5 $ Mirror (reflectVert (OneBig 0.75 0.75)
 myManageHook = defaultFloatings <+> manageDocks <+> manageSpawn
   where
     defaultFloatings = composeAll
-        [ title =? "Firefox Preferences" --> doFloat
+        [ title =? "Firefox Preferences" --> doFloat,
+          className =? "feh" --> doFloat
         ]
 
 ------------------------------------------------------------------------
