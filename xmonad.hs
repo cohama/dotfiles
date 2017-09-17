@@ -20,6 +20,7 @@ import XMonad.Actions.WindowBringer (gotoMenuArgs)
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Simplest
 import XMonad.Layout.OneBig
+import XMonad.Layout.Grid
 import XMonad.Layout.Reflect
 import XMonad.Layout.Spacing (smartSpacing)
 import qualified XMonad.Actions.CycleWS as CW
@@ -238,7 +239,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ smartSpacing 5 $ Mirror (reflectVert (OneBig 0.75 0.75)) ||| Simplest
+myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) ||| Simplest ||| smartSpacing 5 (reflectVert (GridRatio 1.5)) ||| smartSpacing 5 (Mirror (Tall 1 (3/100)  (1/2)))
 
 ------------------------------------------------------------------------
 -- Window rules:
