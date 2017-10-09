@@ -292,7 +292,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
     setWMName "LG3D"
-    threadDelay $ 2000*1000
+    io $ threadDelay $ 2000*1000
     spawn $ "pkill trayer; " ++ trayerCommand
     spawn "nitrogen --restore"
     -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
