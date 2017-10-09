@@ -289,6 +289,15 @@ export LESS='-XFMWR'
 bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-put-history
 
+function my-anyframe-widget-insert-cdr() {
+  anyframe-source-cdr \
+  | anyframe-selector-auto \
+  | anyframe-action-insert
+}
+
+zle -N my-anyframe-widget-insert-cdr
+bindkey "f" my-anyframe-widget-insert-cdr
+
 # bullet-train
 BULLETTRAIN_PROMPT_ORDER=(
   status
