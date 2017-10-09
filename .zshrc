@@ -210,8 +210,8 @@ setopt extendedglob
 # some more ls aliases
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
-alias lla='ls -alF'
-alias ll='ls -lF'
+alias lla='ls -alFh'
+alias ll='ls -lFh'
 alias la='ls -AF'
 alias l='ls -CF'
 alias cdv='cd ~/.vim'
@@ -300,6 +300,7 @@ bindkey "f" my-anyframe-widget-insert-cdr
 
 # bullet-train
 BULLETTRAIN_PROMPT_ORDER=(
+  context
   status
   dir
   git
@@ -308,7 +309,10 @@ BULLETTRAIN_PROMPT_ORDER=(
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_VIRTUALENV_BG=green
 BULLETTRAIN_VIRTUALENV_FG=white
-BULLETTRAIN_IS_SSH_CLIENT=true
+BULLETTRAIN_CONTEXT_DEFAULT_USER=cohama
+if [[ -n $SSH_TTY ]]; then
+  BULLETTRAIN_IS_SSH_CLIENT=true
+fi
 BULLETTRAIN_DIR_EXTENDED=2
 
 # OPAM configuration
