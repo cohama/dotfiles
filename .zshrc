@@ -287,6 +287,11 @@ function cwd() {
   pwd | tr -d "\n"
 }
 
+# readlink -f without end of newline
+function rlf() {
+  readlink -f "$@" | tr -d "\n"
+}
+
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
