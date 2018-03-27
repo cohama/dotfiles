@@ -282,6 +282,11 @@ function man() {
   man "$@"
 }
 
+# copy pwd without end of newline
+function cwd() {
+  pwd | tr -d "\n"
+}
+
 export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
