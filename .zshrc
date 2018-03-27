@@ -299,6 +299,15 @@ function my-anyframe-widget-insert-cdr() {
 zle -N my-anyframe-widget-insert-cdr
 bindkey "f" my-anyframe-widget-insert-cdr
 
+function my-anyframe-widget-insert-ls() {
+  ls \
+  | anyframe-selector-auto \
+  | anyframe-action-insert
+}
+
+zle -N my-anyframe-widget-insert-ls
+bindkey "l" my-anyframe-widget-insert-ls
+
 # bullet-train
 BULLETTRAIN_PROMPT_ORDER=(
   context
