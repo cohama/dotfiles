@@ -230,6 +230,7 @@ alias sudo='sudo '
 alias sc='systemctl'
 alias gv='gvim -f --cmd "let g:singleton#disable=1"'
 alias mv='mv -i'
+alias -g XX='| xsel -b'
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
