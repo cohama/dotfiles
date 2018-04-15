@@ -326,4 +326,6 @@ command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(w
 # pyenv
 command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
 
-[[ -e ~/.dir_colors ]] && eval $(dircolors ~/.dir_colors)
+if [[ -e ~/.dir_colors ]]; then
+  eval $(dircolors ~/.dir_colors)
+fi
