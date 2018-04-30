@@ -317,9 +317,6 @@ source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 # rbenv
 command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 
-# haskell-stack completion
-command -v stack > /dev/null 2>&1 && eval "$(stack --bash-completion-script "$(which stack)")"
-
 # My local settings
 [[ -e ~/dotfiles/.local.zsh  ]] && source ~/dotfiles/.local.zsh
 
