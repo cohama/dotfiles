@@ -5,3 +5,4 @@
 .local.zsh
 .local.zshenv
 .plugintest.vimrc
+.idea/
