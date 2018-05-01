@@ -21,6 +21,7 @@
 	cob = checkout -b
 	d = diff
 	f = fetch
+	ff = pull --rebase
 	l = log --oneline --graph --all --decorate
 	l1 = log --oneline --graph --all --decorate -10
 	l2 = log --oneline --graph --all --decorate -20
