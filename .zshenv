@@ -32,3 +32,6 @@ export PATH=~/.cargo/bin:$PATH
 
 # local executables
 export PATH=~/local/bin:$PATH
+
+# pyenv
+export PATH=~/.pyenv/shims:$PATH
