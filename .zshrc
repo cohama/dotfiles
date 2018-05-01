@@ -228,7 +228,7 @@ alias c_='cd $_'
 alias T='tmux -2'
 alias sudo='sudo '
 alias sc='systemctl'
-alias gv='gvim -f --cmd "let g:singleton#disable=1"'
+alias gv='gvim --remote-tab'
 alias mv='mv -i'
 alias -g XX='| xsel -b'
 
