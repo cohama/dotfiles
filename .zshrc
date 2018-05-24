@@ -231,6 +231,8 @@ alias sc='systemctl'
 alias gv='gvim --remote-tab'
 alias mv='mv -i'
 alias -g XX='| xsel -b'
+alias gcd='cd $(git rev-parse --show-toplevel)'
+alias px='pipenv run'
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
