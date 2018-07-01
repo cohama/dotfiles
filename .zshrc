@@ -352,3 +352,6 @@ command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
 if [[ -e ~/.dir_colors ]]; then
   eval $(dircolors ~/.dir_colors)
 fi
+
+# Pipenv
+PIPENV_VENV_IN_PROJECT=true
