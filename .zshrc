@@ -354,4 +354,4 @@ if [[ -e ~/.dir_colors ]]; then
 fi
 
 # Pipenv
-PIPENV_VENV_IN_PROJECT=true
+export PIPENV_VENV_IN_PROJECT=true
