@@ -11,8 +11,8 @@ mkdir -p ~/.xmonad
 ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
 # lilyterm
-mkdir -p ~/.config/lilyterm
-ln -Fsi ~/dotfiles/default.conf ~/.config/lilyterm
+mkdir -p ~/.config/termite
+ln -Fsi ~/dotfiles/termite.config ~/.config/termite/config
 
 # twmn
 mkdir -p ~/.config/twmn
