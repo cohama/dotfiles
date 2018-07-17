@@ -262,12 +262,9 @@ myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) 
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = defaultFloatings <+> manageDocks <+> manageSpawn
+myManageHook = defaultFloatings <+> manageDocks
   where
-    defaultFloatings = composeAll
-        [ title =? "Firefox Preferences" --> doFloat,
-          className =? "feh" --> doFloat
-        ]
+    defaultFloatings = className =? "feh" --> doFloat
 
 ------------------------------------------------------------------------
 -- Event handling
