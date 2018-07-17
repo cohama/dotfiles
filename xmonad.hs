@@ -34,7 +34,7 @@ import Data.List as L
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "lilyterm -e tmux -2"
+myTerminal = "termite"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -302,7 +302,7 @@ myStartupHook = do
     spawn $ "pkill trayer; " ++ trayerCommand
     spawn "nitrogen --restore"
     -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
-    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "LilyTerm")
+    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "Termite")
         where
             -- NOTE: trayer-srg is used for multi monitor support instead of trayer
             trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 28 --alpha 0 --monitor primary"
