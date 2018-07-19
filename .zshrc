@@ -237,7 +237,7 @@ alias px='pipenv run'
 function do_enter() {
   if [ -z "$BUFFER" ]; then
     echo
-    ls -F
+    ls -F --color=auto
   elif [ "$BUFFER" = "git " ]; then
     if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
       echo
