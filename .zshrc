@@ -298,6 +298,8 @@ export EDITOR='vim'
 export PAGER='less'
 export LESS='-XFMWR'
 
+export KEYTIMEOUT=1
+
 # anyframe
 bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-put-history
