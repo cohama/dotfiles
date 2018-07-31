@@ -4,10 +4,6 @@ autoload -U path
 export CABAL_HOME=~/.cabal
 export PATH=$CABAL_HOME/bin:$PATH
 
-# nodebrew
-export NODEBREW_HOME=$HOME/.nodebrew/current
-export PATH=$NODEBREW_HOME/bin:$PATH
-
 # themis
 export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 
