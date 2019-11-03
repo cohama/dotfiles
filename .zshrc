@@ -294,7 +294,7 @@ function rlf() {
   readlink -f "$@" | tr -d "\n"
 }
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export PAGER='less'
 export LESS='-XFMWR'
 
