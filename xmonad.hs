@@ -93,7 +93,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_f     ), spawnOn "2" "firefox")
 
     -- launch browser
-    , ((modm,               xK_Escape ), spawn "light-locker-command -l")
+    , ((modm,               xK_Escape ), spawn "dm-tool lock")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
