@@ -56,7 +56,7 @@ myBorderWidth = 2
 myModMask = mod4Mask
 
 
-myVimCommand = "/bin/zsh -c '/usr/bin/gvim -f'"
+myVimCommand = "NVIM_LISTEN_ADDRESS=/tmp/nvimsocket /bin/zsh -c '/usr/bin/nvim-qt'"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
