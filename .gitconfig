@@ -28,6 +28,7 @@
 	l3 = log --oneline --graph --all --decorate -30
 	m = merge --no-ff --no-commit
 	p = push
+	pu = push -u origin HEAD
 	r = reset
 	rb = rebase
 	rba = rebase --abort
