@@ -6,3 +6,5 @@
 .local.zshenv
 .plugintest.vimrc
 .idea/
+tags
+.mypy_cache
