@@ -262,9 +262,9 @@ myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) 
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = defaultFloatings <+> manageDocks
+myManageHook = defaultFloatings <> manageDocks
   where
-    defaultFloatings = className =? "feh" --> doFloat
+    defaultFloatings = className =? "Sxiv" --> doFloat
 
 ------------------------------------------------------------------------
 -- Event handling
