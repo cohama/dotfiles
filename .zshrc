@@ -234,6 +234,7 @@ alias mv='mv -i'
 alias -g XX='| xsel -b'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias px='pipenv run'
+alias pox='poetry run'
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
