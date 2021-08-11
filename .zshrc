@@ -303,6 +303,7 @@ export LESS='-XFMWR'
 export KEYTIMEOUT=1
 
 # anyframe
+zstyle ":anyframe:selector:" use fzf
 bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-put-history
 
@@ -359,3 +360,6 @@ fi
 
 # Pipenv
 export PIPENV_VENV_IN_PROJECT=true
+
+# fzf
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40% --border"
