@@ -10,9 +10,9 @@ done
 mkdir -p ~/.xmonad
 ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
-# lilyterm
-mkdir -p ~/.config/termite
-ln -Fsi ~/dotfiles/termite.config ~/.config/termite/config
+# alacritty
+mkdir -p ~/.config/alacritty
+ln -Fsi ~/dotfiles/alacritty.yml ~/.config/autostart/alacritty.yml
 
 # twmn
 mkdir -p ~/.config/twmn

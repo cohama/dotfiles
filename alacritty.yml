@@ -1,0 +1,45 @@
+live_config_reload: true
+
+env:
+  term: alacritty
+
+# Colors (Ayu Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#3f3f3f'
+    foreground: '#B3B1AD'
+
+  # Normal colors
+  normal:
+    black     : '#3f3f3f'
+    red       : '#a06060'
+    green     : '#60b48a'
+    yellow    : '#dfaf8f'
+    blue      : '#506070'
+    magenta   : '#dc8cc3'
+    cyan      : '#8cd0d3'
+    white     : '#dcdccc'
+
+  # Bright colors
+  bright:
+    black     : '#709080'
+    red       : '#dca3a3'
+    green     : '#c3bf9f'
+    yellow    : '#f0dfaf'
+    blue      : '#94bff3'
+    magenta   : '#ec93d3'
+    cyan      : '#93e0e3'
+    white     : '#ffffff'
+
+draw_bold_text_with_bright_colors: true
+
+font:
+   size: 6
+
+background_opacity: 0.8
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
