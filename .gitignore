@@ -8,3 +8,4 @@
 .idea/
 tags
 .mypy_cache
+.vscode
