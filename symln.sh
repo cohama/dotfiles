@@ -12,7 +12,7 @@ ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
 # alacritty
 mkdir -p ~/.config/alacritty
-ln -Fsi ~/dotfiles/alacritty.yml ~/.config/autostart/alacritty.yml
+ln -Fsi ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 # twmn
 mkdir -p ~/.config/twmn
@@ -21,3 +21,7 @@ ln -Fsi ~/dotfiles/twmn.conf ~/.config/twmn
 # sxiv
 mkdir -p ~/.config/sxiv/exec
 ln -Fsi ~/dotfiles/sxiv-key-hander ~/.config/sxiv/exec/key-handler
+
+# fonts
+mkdir -p ~/.config/fontconfig
+ln -Fsi ~/dotfiles/fonts.conf ~/.config/fontconfig/fonts.conf
