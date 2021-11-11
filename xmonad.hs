@@ -35,6 +35,7 @@ import Data.List as L
 -- certain contrib modules.
 --
 myTerminal = "alacritty"
+myTerminalClass = "Alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -262,7 +263,7 @@ myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) 
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = defaultFloatings <> manageDocks
+myManageHook = manageSpawn <> defaultFloatings <> manageDocks
   where
     defaultFloatings = className =? "Sxiv" --> doFloat
 
@@ -298,8 +299,7 @@ myStartupHook = do
     io $ threadDelay $ 2000*1000
     spawn $ "pkill trayer; " ++ trayerCommand
     spawn "nitrogen --restore"
-    -- raiseMaybe (spawnOn "2" "firefox") (className =? "Firefox")
-    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? "Termite")
+    raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? myTerminalClass)
         where
             -- NOTE: trayer-srg is used for multi monitor support instead of trayer
             trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 28 --alpha 0 --monitor primary"
