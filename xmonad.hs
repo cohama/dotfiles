@@ -17,6 +17,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Actions.WindowGo (raiseMaybe)
 import XMonad.Actions.WindowBringer (gotoMenuArgs)
+import XMonad.Hooks.ManageHelpers (doRectFloat)
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Simplest
 import XMonad.Layout.OneBig
@@ -30,6 +31,7 @@ import Control.Concurrent (threadDelay)
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Data.List as L
+import Data.Ratio
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -268,7 +270,7 @@ myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) 
 --
 myManageHook = manageSpawn <> defaultFloatings <> manageDocks
   where
-    defaultFloatings = className =? "Sxiv" --> doFloat
+    defaultFloatings = className =? "Sxiv" --> doRectFloat (W.RationalRect (1 % 3) (1 % 3) (1 % 3) (1 % 3))
 
 ------------------------------------------------------------------------
 -- Event handling
