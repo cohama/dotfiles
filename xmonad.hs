@@ -34,7 +34,7 @@ import Data.List as L
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "alacritty"
+myTerminal = "env WINIT_HIDPI_FACTOR=1 alacritty"
 myTerminalClass = "Alacritty"
 
 -- Whether focus follows the mouse pointer.
