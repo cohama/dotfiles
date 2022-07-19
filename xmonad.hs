@@ -99,6 +99,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
+    -- launch flameshot
+    , ((modm,               xK_c     ), spawn "flameshot gui")
+
     -- backlight brightness up
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 7")
 
