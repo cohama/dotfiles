@@ -90,6 +90,8 @@ alias -g XX='| xsel -b'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias px='poetry run'
 alias pox='poetry run'
+alias v='nvim'
+alias doco='docker compose'
 
 function do_enter() {
   if [ -z "$BUFFER" ]; then
