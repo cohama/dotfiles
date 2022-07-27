@@ -37,6 +37,7 @@ draw_bold_text_with_bright_colors: true
 font:
   size: 7.0
 
+  scale_with_dpi: false
   # normal:
   #   family: "Iosevka"
 
