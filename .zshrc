@@ -53,6 +53,9 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "" history-beginning-search-backward-end
 bindkey "" history-beginning-search-forward-end
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey 'e'  edit-command-line
 bindkey -M viins "" beginning-of-line
 bindkey -M viins "" end-of-line
 bindkey -M viins "" forward-char
