@@ -161,6 +161,7 @@ export KEYTIMEOUT=1
 
 # anyframe
 zstyle ":anyframe:selector:" use fzf
+zstyle ":anyframe:selector:fzf:" command 'fzf --extended --no-sort'
 bindkey "d" anyframe-widget-cdr
 bindkey "m" anyframe-widget-put-history
 
