@@ -31,3 +31,5 @@ export PATH=~/local/bin:$PATH
 
 # pyenv
 export PATH=~/.pyenv/shims:$PATH
+
+export BROWSER=firefox
