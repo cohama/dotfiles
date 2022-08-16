@@ -25,3 +25,6 @@ ln -Fsi ~/dotfiles/sxiv-key-hander ~/.config/sxiv/exec/key-handler
 # fonts
 mkdir -p ~/.config/fontconfig
 ln -Fsi ~/dotfiles/fonts.conf ~/.config/fontconfig/fonts.conf
+
+# polybar
+ln -Fsi ~/dotfiles/polybar ~/.config/

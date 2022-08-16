@@ -21,9 +21,12 @@ import XMonad.Actions.SpawnOn
 import XMonad.Actions.WindowBringer (gotoMenuArgs)
 import XMonad.Actions.WindowGo (raiseMaybe)
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers (doRectFloat)
 import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.Grid
 import XMonad.Layout.OneBig
 import XMonad.Layout.Reflect
@@ -218,7 +221,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.8 0.8))) ||| smartSpacing 5 (Mirror (OneBig 0.75 0.75)) ||| Simplest ||| smartSpacing 5 (GridRatio 1.5) ||| smartSpacing 5 (Mirror (Tall 1 (3 / 100) (1 / 2)))
+myLayout = avoidStruts $ smartSpacing 5 (Mirror (reflectVert (OneBig 0.75 0.75))) ||| smartSpacing 5 (Mirror (OneBig 0.75 0.75)) ||| Simplest ||| smartSpacing 5 (GridRatio 1.5) ||| smartSpacing 5 (Mirror (Tall 1 (3 / 100) (1 / 2)))
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -270,12 +273,8 @@ myLogHook = return ()
 myStartupHook = do
   setWMName "LG3D"
   io $ threadDelay $ 2000 * 1000
-  spawn $ "pkill trayer; " ++ trayerCommand
   spawn "nitrogen --restore"
   raiseMaybe (spawnOn "1" $ XMonad.terminal defaults) (className =? myTerminalClass)
-  where
-    -- NOTE: trayer-srg is used for multi monitor support instead of trayer
-    trayerCommand = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --tint 0x000000 --height 28 --alpha 0 --monitor primary"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -288,21 +287,38 @@ myStartupHook = do
 --
 -- No need to modify this.
 --
-main = do
-  x <- statusBar myBar myPP toggleStrutsKey defaults
-  xmonad x
+main = xmonad . withSB myPolybarConf . ewmh . docks $ defaults
 
--- Command to launch the bar.
-myBar = "xmobar"
-
--- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP =
-  xmobarPP
-    { ppCurrent = xmobarColor "#000000" "#BCBC52" . wrap "[" "]",
-      ppVisible = xmobarColor "#101010" "#808038" . wrap "[" "]",
-      ppHidden = xmobarColor "#808080" "#505050" . wrap " " " ",
-      ppTitle = xmobarColor "#20F0C0" "" . shorten 150
+myPolybarConf =
+  def
+    { sbLogHook = xmonadPropLog =<< dynamicLogString polybarPPdef,
+      sbStartupHook = spawn "~/.config/polybar/launch.sh --forest",
+      sbCleanupHook = spawn "killall polybar"
     }
+
+polybarPPdef =
+  def
+    { ppCurrent = const "",
+      ppVisible = const "",
+      ppHidden = const "",
+      ppTitle = const ""
+    }
+
+-- def
+--   { ppCurrent = polybarFgColor "#FF9F1c" . wrap "[" "]",
+--     ppTitle = const "papaya",
+--     ppVisible = const "",
+--     ppHidden = const ""
+--   }
+
+polybarFgColor :: String -> String -> String
+polybarFgColor fgColor = wrap ("%{F" <> fgColor <> "} ") " %{F-}"
+
+polybarBgColor :: String -> String -> String
+polybarBgColor bgColor = wrap ("%{B" <> bgColor <> "} ") " %{B-}"
+
+polybarColor :: String -> String -> String -> String
+polybarColor fgColor bgColor = polybarBgColor bgColor . polybarFgColor fgColor
 
 -- Key binding to toggle the gap for the bar.
 toggleStrutsKey XConfig {XMonad.modMask = modmask} = (modmask, xK_b)
