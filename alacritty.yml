@@ -107,3 +107,7 @@ hints:
      binding:
        key: P
        mods: Control|Shift
+
+key_bindings:
+  - { key: Colon, mods: Control, action: IncreaseFontSize }
+  - { key: Caret, mods: Control|Shift, action: ResetFontSize }
