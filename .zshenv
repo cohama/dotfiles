@@ -21,7 +21,7 @@ export HAXE_STD_PATH=/opt/haxe/std
 export PATH=~/.local/bin:$PATH
 
 # java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
 # rust
 export PATH=~/.cargo/bin:$PATH
