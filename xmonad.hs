@@ -18,6 +18,8 @@ import System.Exit
 import XMonad
 import qualified XMonad.Actions.CycleWS as CW
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.UpdateFocus
+import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowBringer (gotoMenuArgs)
 import XMonad.Actions.WindowGo (raiseMaybe)
 import XMonad.Hooks.DynamicLog
@@ -123,7 +125,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Move focus to the previous window
       ((modm, xK_k), windows W.focusUp),
       -- Move focus to the master window
-      ((modm, xK_m), windows W.focusMaster),
+      -- ((modm, xK_m), windows W.focusMaster),
       -- Swap the focused window and the master window
       ((modm, xK_Return), windows W.swapMaster),
       -- Swap the focused window with the next window
@@ -152,9 +154,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Quit xmonad
       ((modm .|. shiftMask, xK_q), io exitSuccess),
       -- Restart xmonad
-      ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+      ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       --, ((modm .|. shiftMask, xK_q     ), rescreen)
 
+      ((modm, xK_m), updatePointer (0.5, 0.5) (0.0, 0.0))
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
       --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
@@ -163,12 +166,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- mod-[1..9], Switch to workspace N
       -- mod-shift-[1..9], Move client to workspace N
       --
-      [ ((m .|. modm, k), windows $ f i)
+      [ ((m .|. modm, k), windows (f i) >> focusUnderPointer)
         | (i, k) <- zip (workspaces conf) [xK_1 .. xK_9],
           -- , (f, m) <- [(viewOnScreen 0, 0), (\n -> W.view n . shiftOn 0 n, shiftMask)]]
           (f, m) <- [(viewOnScreen 0, 0), (shiftAndViewOnScreen 0, shiftMask)]
       ]
-      ++ [ ((modm, xK_Tab), CW.nextScreen),
+      ++ [ ((modm, xK_Tab), CW.nextScreen >> updatePointer (0.5, 0.5) (0.0, 0.0)),
            ((modm .|. shiftMask, xK_Tab), CW.shiftNextScreen >> CW.nextScreen)
          ]
 
