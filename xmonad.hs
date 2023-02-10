@@ -35,6 +35,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Simplest
 import XMonad.Layout.Spacing (smartSpacing)
 import qualified XMonad.StackSet as W
+import XMonad.Actions.FloatKeys (keysResizeWindow)
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -136,7 +137,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_h), sendMessage Shrink),
       -- Expand the master area
       ((modm, xK_l), sendMessage Expand),
-      ((modm, xK_semicolon), sendMessage Expand),
       -- Push window back into tiling
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
@@ -145,6 +145,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_period), sendMessage (IncMasterN (-1))),
       -- Window Briger!
       ((modm, xK_i), gotoMenuArgs ["-i", "-l", "10", "-fn", "Nasu-18", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"]),
+      -- Resize floating window
+      ((modm, xK_semicolon), withFocused (keysResizeWindow (200, 200) (1%2, 1%2))),
+      ((modm, xK_minus), withFocused (keysResizeWindow (-200, -200) (1%2, 1%2))),
       -- Toggle the status bar gap
       -- Use this binding with avoidStruts from Hooks.ManageDocks.
       -- See also the statusBar function from Hooks.DynamicLog.
