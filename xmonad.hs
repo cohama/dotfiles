@@ -96,12 +96,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_v), spawn myVimCommand),
       -- launch browser
       ((modm, xK_f), spawnOn "2" "firefox"),
+      -- launch communication tools
+      ((modm, xK_g), spawnOn "3" "slack" >> spawnOn "3" "discord"),
       -- launch browser
       ((modm, xK_Escape), spawn "light-locker-command -l"),
       -- launch gmrun
       ((modm .|. shiftMask, xK_p), spawn "gmrun"),
       -- launch flameshot
       ((modm, xK_c), spawn "flameshot gui"),
+      ((modm .|. shiftMask, xK_c), spawn "flameshot gui --last-region"),
       -- backlight brightness up
       ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 7"),
       -- backlight brightness down
@@ -113,7 +116,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- sound volume down
       ((0, xF86XK_AudioMute), spawn "amixer set Master toggle"),
       -- close focused window
-      ((modm .|. shiftMask, xK_c), kill),
       ((modm, xK_w), kill),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
