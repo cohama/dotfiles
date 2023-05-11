@@ -150,6 +150,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Resize floating window
       ((modm, xK_semicolon), withFocused (keysResizeWindow (200, 200) (1%2, 1%2))),
       ((modm, xK_minus), withFocused (keysResizeWindow (-200, -200) (1%2, 1%2))),
+      -- Play/Pause music
+      ((modm, xK_F2), spawn "playerctl play-pause"),
       -- Toggle the status bar gap
       -- Use this binding with avoidStruts from Hooks.ManageDocks.
       -- See also the statusBar function from Hooks.DynamicLog.
