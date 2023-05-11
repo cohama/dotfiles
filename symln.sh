@@ -28,3 +28,6 @@ ln -Fsi ~/dotfiles/fonts.conf ~/.config/fontconfig/fonts.conf
 
 # polybar
 ln -Fsi ~/dotfiles/polybar ~/.config/
+
+# picom
+ln -Fsi ~/dotfiles/picom.conf ~/.config
