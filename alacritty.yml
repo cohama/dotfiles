@@ -86,7 +86,7 @@ hints:
        enabled: true
        mods: None
      binding:
-       key: U
+       key: I
        mods: Control|Shift
    - regex: "/?[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)+"
      action: Copy
