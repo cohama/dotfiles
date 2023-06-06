@@ -8,7 +8,6 @@
 --
 -- Normally, you'd only override those defaults you care about.
 --
-
 import Control.Concurrent (threadDelay)
 import Data.List as L
 import qualified Data.Map as M
@@ -17,6 +16,7 @@ import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import XMonad
 import qualified XMonad.Actions.CycleWS as CW
+import XMonad.Actions.Navigation2D
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.UpdateFocus
 import XMonad.Actions.UpdatePointer
@@ -124,21 +124,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Resize viewed windows to the correct size
       ((modm, xK_n), refresh),
       -- Move focus to the next window
-      ((modm, xK_j), windows W.focusDown),
+      ((modm, xK_Down), windows W.focusDown),
       -- Move focus to the previous window
-      ((modm, xK_k), windows W.focusUp),
+      ((modm, xK_Up), windows W.focusUp),
       -- Move focus to the master window
       -- ((modm, xK_m), windows W.focusMaster),
       -- Swap the focused window and the master window
       ((modm, xK_Return), windows W.swapMaster),
       -- Swap the focused window with the next window
-      ((modm .|. shiftMask, xK_j), windows W.swapDown),
+      ((modm .|. shiftMask, xK_Down), windows W.swapDown),
       -- Swap the focused window with the previous window
-      ((modm .|. shiftMask, xK_k), windows W.swapUp),
+      ((modm .|. shiftMask, xK_Up), windows W.swapUp),
       -- Shrink the master area
-      ((modm, xK_h), sendMessage Shrink),
+      ((modm .|. shiftMask, xK_h), sendMessage Shrink),
       -- Expand the master area
-      ((modm, xK_l), sendMessage Expand),
+      ((modm .|. shiftMask, xK_l), sendMessage Expand),
       -- Push window back into tiling
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
@@ -164,10 +164,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       --, ((modm .|. shiftMask, xK_q     ), rescreen)
 
-      ((modm, xK_m), updatePointer (0.5, 0.5) (0.0, 0.0))
-      -- Run xmessage with a summary of the default keybindings (useful for beginners)
-      --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    ]
+      ((modm, xK_m), updatePointer (0.5, 0.5) (0.0, 0.0)),
+
+      ((modm, xK_l), windowGo R False),
+      ((modm, xK_h), windowGo L False),
+      ((modm, xK_k), windowGo U False),
+      ((modm, xK_j), windowGo D False)
+   ]
       ++
       --
       -- mod-[1..9], Switch to workspace N
@@ -297,7 +300,7 @@ myStartupHook = do
 --
 -- No need to modify this.
 --
-main = xmonad . withSB myPolybarConf . ewmh . docks $ defaults
+main = xmonad . withSB myPolybarConf . ewmh . docks . withNavigation2DConfig myNavigationConfig $ defaults
 
 myPolybarConf =
   def
@@ -313,6 +316,12 @@ polybarPPdef =
       ppHidden = const "",
       ppTitle = const ""
     }
+
+myNavigationConfig =
+  def
+    { defaultTiledNavigation = sideNavigationWithBias (-5000) `hybridOf` centerNavigation
+    }
+
 
 -- def
 --   { ppCurrent = polybarFgColor "#FF9F1c" . wrap "[" "]",
