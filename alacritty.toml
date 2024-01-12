@@ -1,0 +1,97 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#709080"
+blue = "#94bff3"
+cyan = "#93e0e3"
+green = "#c3bf9f"
+magenta = "#ec93d3"
+red = "#dca3a3"
+white = "#ffffff"
+yellow = "#f0dfaf"
+
+[colors.normal]
+black = "#3f3f3f"
+blue = "#506070"
+cyan = "#8cd0d3"
+green = "#60b48a"
+magenta = "#dc8cc3"
+red = "#a06060"
+white = "#dcdccc"
+yellow = "#dfaf8f"
+
+[colors.primary]
+background = "#3f3f3f"
+foreground = "#B3B1AD"
+
+[env]
+term = "alacritty"
+
+[font]
+size = 10.0
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+command = "xdg-open"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "I"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = true
+regex = "/?[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)+"
+
+[hints.enabled.binding]
+key = "Y"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[hints.enabled]]
+action = "Copy"
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "P"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = ":"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Home"
+mods = "Control|Shift"
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+opacity = 0.95
+
+[window.dimensions]
+columns = 120
+lines = 40

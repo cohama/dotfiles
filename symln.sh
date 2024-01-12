@@ -12,7 +12,7 @@ ln -Fsi ~/dotfiles/xmonad.hs ~/.xmonad
 
 # alacritty
 mkdir -p ~/.config/alacritty
-ln -Fsi ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -Fsi ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 
 # twmn
 mkdir -p ~/.config/twmn
