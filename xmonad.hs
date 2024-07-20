@@ -63,7 +63,7 @@ myBorderWidth = 2
 --
 myModMask = mod4Mask
 
-myVimCommand = "env NVIM_LISTEN_ADDRESS=/tmp/nvimsocket /bin/zsh -c '/usr/bin/neovide"
+myVimCommand = "env NVIM_LISTEN_ADDRESS=/tmp/nvimsocket /bin/zsh -c '/usr/bin/neovide'"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
