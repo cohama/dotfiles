@@ -89,7 +89,7 @@ alias mv='mv -i'
 alias -g XX='| xsel -b'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias px='poetry run'
-alias pox='poetry run'
+alias rr='rye run'
 alias v='nvim'
 alias doco='docker compose'
 
