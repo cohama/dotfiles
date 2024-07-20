@@ -31,7 +31,7 @@ foreground = "#B3B1AD"
 term = "alacritty"
 
 [font]
-size = 10.0
+size = 7.9
 
 [hints]
 alphabet = "jfkdls;ahgurieowpq"
