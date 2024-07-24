@@ -213,7 +213,7 @@ command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
 
 # rye
-command -v rye > /dev/null 2>&1 && source ~/.rye/env
+[[ -e ~/rye/env ]] && source ~/.rye/env
 
 if [[ -e ~/.dir_colors ]]; then
   eval $(dircolors ~/.dir_colors)
