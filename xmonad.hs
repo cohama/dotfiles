@@ -90,8 +90,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
-      -- launch dmenu
-      ((modm, xK_p), spawn "dmenu_run -i -fn 'Monospace-18' -o '0.9' -nb '#202020' -nf '#e0e0e0' "),
+      -- launch rofi
+      ((modm, xK_p), spawn "rofi -show drun"),
+      ((modm, xK_e), spawn "rofi -show emoji"),
       -- launch gVim
       ((modm, xK_v), spawn myVimCommand),
       -- launch browser
