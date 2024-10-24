@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 [colors]
@@ -85,7 +86,7 @@ action = "ResetFontSize"
 key = "Home"
 mods = "Control|Shift"
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
