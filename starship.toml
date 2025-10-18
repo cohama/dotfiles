@@ -1,0 +1,70 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = """\
+$hostname\
+$directory\
+[](fg:#53607a bg:#d6d19c)\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:#d6d19c)
+$character\
+"""
+
+right_format = """\
+$status\
+$cmd_duration\
+$time
+"""
+
+[hostname]
+ssh_only = true
+format = '[$ssh_symbol$hostname ]($style)'
+style = "fg:#444444 bg:#cccccc"
+
+[directory]
+truncation_length = 0
+format = "[ $path ]($style)"
+style = "fg:#E4E4E4 bg:#53607a"
+repo_root_style = "bold underline fg:#E4E4E4 bg:#53607a"
+before_repo_root_style = "fg:#E4E4E4 bg:#53607a"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)[$read_only]($read_only_style)"
+truncate_to_repo = false
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = " "
+style = "fg:#1C3A5E bg:#d6d19c"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "fg:#1C3A5E bg:#d6d19c"
+
+[git_metrics]
+format = "([+$added]($added_style))[]($added_style)"
+added_style = "fg:#1C3A5E bg:#d6d19c"
+deleted_style = "fg:bright-red bg:235"
+disabled = false
+
+[character]
+success_symbol = '[❯](green)'
+vimcmd_symbol = '[❯](fg:white bg:green) '
+
+[status]
+disabled = false
+
+[cmd_duration]
+disabled = false
+format = '[⌛️$duration]($style) '
+
+[time]
+disabled = false
+format = '[🕒️$time]($style)'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true

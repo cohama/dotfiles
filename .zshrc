@@ -18,21 +18,21 @@ eval `dircolors -b`
 # environment variables
 export LANG=ja_JP.UTF-8
 
-# antigen
-if [[ -f /usr/share/zsh/scripts/zplug/init.zsh ]]; then
-  source /usr/share/zsh/scripts/zplug/init.zsh
+# zinit
+if [[ -f /usr/share/zinit/zinit.zsh ]]; then
+  source /usr/share/zinit/zinit.zsh
 
-  zplug zdharma-continuum/fast-syntax-highlighting
-  # zplug amaya382/zsh-fzf-widgets
-  zplug mollifier/anyframe
-  zplug romkatv/powerlevel10k, as:theme, depth:1
-  zplug Aloxaf/fzf-tab
+  zinit wait lucid light-mode for \
+    mollifier/anyframe \
+    Aloxaf/fzf-tab \
+    atinit"zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf atpull"zinit creinstall -q ." \
+        zsh-users/zsh-completions
+fi
 
-  if ! zplug check; then
-    zplug install
-  fi
-
-  zplug load
+if command -v starship > /dev/null; then
+  eval "$(starship init zsh)"
 fi
 
 # oh-my-zsh defines unnecessary aliases

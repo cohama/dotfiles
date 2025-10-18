@@ -31,3 +31,6 @@ ln -Fsi ~/dotfiles/polybar ~/.config/
 
 # picom
 ln -Fsi ~/dotfiles/picom.conf ~/.config
+
+# starship
+ln -Fsi ~/dotfiles/starship.toml ~/.config/starship.toml
