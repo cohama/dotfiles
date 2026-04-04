@@ -230,20 +230,11 @@ if [[ -n $SSH_TTY || -n $SSH_CONNECTION ]]; then
 fi
 BULLETTRAIN_DIR_EXTENDED=2
 
-# OPAM configuration
-source ~/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
-
-# rbenv
-command -v rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
-
 # My local settings
 [[ -e ~/dotfiles/.local.zsh  ]] && source ~/dotfiles/.local.zsh
 
 # pyenv
 command -v pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
-
-# rye
-[[ -e ~/rye/env ]] && source ~/.rye/env
 
 if [[ -e ~/.dir_colors ]]; then
   eval $(dircolors ~/.dir_colors)
