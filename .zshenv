@@ -1,8 +1,8 @@
 autoload -U path
 
-# cabal
-export CABAL_HOME=~/.cabal
-export PATH=$CABAL_HOME/bin:$PATH
+# ghcup
+export PATH=~/.ghcup/bin:$PATH
+export PATH=~/.cabal/bin:$PATH
 
 # themis
 export PATH=~/.vim/bundle/vim-themis/bin:$PATH
