@@ -91,14 +91,20 @@ alias gcd='cd $(git rev-parse --show-toplevel)'
 alias px='poetry run'
 alias rr='rye run'
 alias v='nvim'
+alias ur='uv run'
+alias CC='cwd | xsel -b'
 alias doco='docker compose'
 
 function do_enter() {
-  if [ -z "$BUFFER" ]; then
+  if [[ "$CONTEXT" = "cont" ]]; then
+    zle .accept-line
+    return 0
+  elif [[ -z "$BUFFER" ]]; then
     echo
+    cd $(pwd)
     ls -F --color=auto
-  elif [ "$BUFFER" = "git " ]; then
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+  elif [[ "$BUFFER" = "git " ]]; then
+    if [[ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]]; then
       echo
       echo -e "$fg_no_bold[yellow]--- git status ---$reset_color"
       git status -s
@@ -113,7 +119,7 @@ zle -N do_enter
 bindkey '^m' do_enter
 
 function do_space() {
-  if [ "$BUFFER" = "" ]; then
+  if [[ "$CONTEXT" != "cont" && "$BUFFER" = "" ]]; then
     LBUFFER="git "
   else
     LBUFFER="$LBUFFER "
@@ -130,6 +136,26 @@ function mkcd() {
     mkdir -p $1 && cd $1
   fi
 }
+
+function zle_cdup() {
+  cd ..
+  # zle reset-prompt  # p10k では効かない
+  BUFFER=
+  zle accept-line
+}
+zle -N zle_cdup
+bindkey '^\' zle_cdup
+bindkey '^[[1;5A' zle_cdup
+
+function zle_popd() {
+  popd
+  # zle reset-prompt  # p10k では効かない
+  BUFFER=
+  zle accept-line
+}
+zle -N zle_popd
+bindkey '^_' zle_popd
+bindkey '^[[1;5D' zle_popd
 
 # colored man page
 function man() {
@@ -151,6 +177,10 @@ function cwd() {
 # readlink -f without end of newline
 function rlf() {
   readlink -f "$@" | tr -d "\n"
+}
+
+function RR() {
+  rlf "$@" | xsel -b
 }
 
 export EDITOR='nvim'
