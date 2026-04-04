@@ -6,7 +6,12 @@
 .local.zshenv
 .plugintest.vimrc
 .idea/
+.local/
 tags
 .mypy_cache
 .vscode
 .ropeproject
+.aider*
+.claude
+/.env
+/.codex
