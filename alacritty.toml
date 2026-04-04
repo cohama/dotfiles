@@ -90,6 +90,9 @@ mods = "Control|Shift"
 args = ["--login"]
 program = "/bin/zsh"
 
+[terminal]
+osc52 = "CopyPaste"
+
 [window]
 opacity = 0.95
 
