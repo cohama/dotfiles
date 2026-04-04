@@ -30,3 +30,5 @@ export PATH=~/local/bin:$PATH
 export PATH=~/.pyenv/shims:$PATH
 
 export BROWSER=firefox
+
+export CLAUDE_CONFIG_DIR=~/.config/claude
