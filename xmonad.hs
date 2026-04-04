@@ -20,7 +20,7 @@ import XMonad.Actions.Navigation2D
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.UpdateFocus
 import XMonad.Actions.UpdatePointer
-import XMonad.Actions.WindowBringer (gotoMenuArgs)
+import XMonad.Actions.WindowBringer (menuCommand, menuArgs, gotoMenuConfig)
 import XMonad.Actions.WindowGo (raiseMaybe)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -147,7 +147,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Deincrement the number of windows in the master area
       ((modm, xK_period), sendMessage (IncMasterN (-1))),
       -- Window Briger!
-      ((modm, xK_i), gotoMenuArgs ["-i", "-l", "10", "-fn", "Nasu-18", "-o", "'0.9'", "-nb", "#e0e0e0", "-nf", "#202020"]),
+      ((modm, xK_i), gotoMenuConfig def { menuCommand = "rofi" , menuArgs = ["-dmenu"] }),
       -- Resize floating window
       ((modm, xK_semicolon), withFocused (keysResizeWindow (200, 200) (1%2, 1%2))),
       ((modm, xK_minus), withFocused (keysResizeWindow (-200, -200) (1%2, 1%2))),
