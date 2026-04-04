@@ -251,3 +251,17 @@ export FZF_DEFAULT_OPTS="--layout=reverse"
 
 # added by travis gem
 [ ! -s /home/cohama/.travis/travis.sh ] || source /home/cohama/.travis/travis.sh
+
+# uv run の補完がうまくいかない問題に対処
+# https://github.com/astral-sh/uv/issues/8432#issuecomment-2628635507
+command -v uv > /dev/null 2>&1 && eval "$(uv generate-shell-completion zsh)"
+command -v uv > /dev/null 2>&1 && eval "$(uvx --generate-shell-completion zsh)"
+
+_uv_run_mod() {
+  if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+    _arguments '*:filename:_files'
+  else
+    _uv "$@"
+  fi
+}
+compdef _uv_run_mod uv
