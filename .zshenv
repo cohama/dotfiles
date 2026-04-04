@@ -11,9 +11,6 @@ export PATH=~/.vim/bundle/vim-themis/bin:$PATH
 export GOPATH=~/go
 export PATH=~/go/bin:$PATH
 
-# Haxe
-export HAXE_STD_PATH=/opt/haxe/std
-
 # local env
 [[ -e ~/dotfiles/.local.zshenv ]] && source ~/dotfiles/.local.zshenv
 
@@ -33,6 +30,3 @@ export PATH=~/local/bin:$PATH
 export PATH=~/.pyenv/shims:$PATH
 
 export BROWSER=firefox
-
-# rye
-export PATH=~/.rye/shims:$PATH
